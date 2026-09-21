@@ -12,6 +12,10 @@
 
 <style>
 
+/* =====================================================
+   BASE
+===================================================== */
+
 *{
     box-sizing:border-box;
 }
@@ -25,111 +29,82 @@ body{
 }
 
 body{
-    background:#dce9df;
+    background:#7fa05b;
     font-family:'Cormorant Garamond',serif;
 }
 
-/* =========================================
-              CANVAS PRINCIPAL
-========================================= */
 
-#garden{
+/* =====================================================
+   CIELO
+===================================================== */
+
+.sky{
     position:fixed;
     inset:0;
-
-    width:100%;
-    height:100%;
-
-    display:block;
 
     background:
         linear-gradient(
             to bottom,
-            #a9c7d4 0%,
-            #d9e4d6 42%,
-            #718c4c 65%,
-            #294b22 100%
-        );
-}
-
-/* =========================================
-              ATMÓSFERA
-========================================= */
-
-.atmosphere{
-    position:fixed;
-    inset:0;
-
-    pointer-events:none;
-
-    background:
-        radial-gradient(
-            ellipse at 50% 42%,
-            rgba(255,255,235,.38),
-            transparent 35%
-        ),
-        linear-gradient(
-            to bottom,
-            rgba(255,255,255,.08),
-            transparent 45%,
-            rgba(0,30,10,.18)
+            #8db7ca 0%,
+            #b9d3d2 30%,
+            #e5e7ca 46%,
+            #8ba45e 58%,
+            #385c2d 100%
         );
 
-    z-index:2;
+    z-index:0;
 }
 
-/* =========================================
-              SOL
-========================================= */
+
+/* =====================================================
+   SOL
+===================================================== */
 
 .sun{
-    position:fixed;
+    position:absolute;
 
-    width:150px;
-    height:150px;
+    width:125px;
+    height:125px;
 
+    right:11%;
     top:9%;
-    right:13%;
 
     border-radius:50%;
 
     background:
         radial-gradient(
             circle,
-            #fffde4 0%,
-            #fff4a8 42%,
-            #f6d76a 72%,
-            rgba(246,215,106,.1) 100%
+            #fffde6 0%,
+            #fff5a8 48%,
+            #f2d56d 72%,
+            rgba(242,213,109,0) 100%
         );
 
     box-shadow:
-        0 0 35px rgba(255,239,150,.75),
-        0 0 100px rgba(255,228,110,.35);
-
-    opacity:.95;
+        0 0 35px rgba(255,239,160,.8),
+        0 0 100px rgba(255,225,110,.35);
 
     z-index:1;
 }
 
-/* =========================================
-              NUBES
-========================================= */
+
+/* =====================================================
+   NUBES
+===================================================== */
 
 .cloud{
-    position:fixed;
+    position:absolute;
 
     width:260px;
-    height:65px;
+    height:55px;
 
     border-radius:100px;
 
-    background:rgba(255,255,255,.35);
+    background:rgba(255,255,255,.28);
 
-    filter:blur(10px);
+    filter:blur(8px);
 
     z-index:1;
-
-    opacity:.55;
 }
 
 .cloud::before,
@@ -138,177 +113,512 @@ body{
 
     position:absolute;
 
-    background:inherit;
-
     border-radius:50%;
+
+    background:inherit;
 }
 
 .cloud::before{
-    width:110px;
-    height:110px;
+    width:100px;
+    height:100px;
 
     left:40px;
     bottom:0;
 }
 
 .cloud::after{
-    width:85px;
-    height:85px;
+    width:80px;
+    height:80px;
 
-    right:45px;
+    right:40px;
     bottom:0;
 }
 
-.cloud1{
-    top:18%;
-    left:-40px;
+.cloud.one{
+    left:-60px;
+    top:19%;
 }
 
-.cloud2{
-    top:27%;
+.cloud.two{
     right:-100px;
-
+    top:27%;
     transform:scale(.8);
 }
 
-.cloud3{
-    top:11%;
-    left:42%;
-
+.cloud.three{
+    left:35%;
+    top:12%;
     transform:scale(.55);
-
-    opacity:.3;
+    opacity:.35;
 }
 
-/* =========================================
-              MENSAJE
-========================================= */
+
+/* =====================================================
+   CAMPO
+===================================================== */
+
+.field{
+    position:absolute;
+
+    left:0;
+    right:0;
+    top:45%;
+    bottom:0;
+
+    overflow:hidden;
+
+    z-index:3;
+
+    perspective:700px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #6e914a,
+            #436d31 55%,
+            #254b25 100%
+        );
+}
+
+
+/* =====================================================
+   HORIZONTE
+===================================================== */
+
+.horizon{
+    position:absolute;
+
+    left:0;
+    right:0;
+
+    top:43%;
+
+    height:13%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(49,81,42,.1),
+            rgba(35,69,32,.8)
+        );
+
+    z-index:2;
+}
+
+
+/* =====================================================
+   MUNDO DE TULIPANES
+===================================================== */
+
+.world{
+    position:absolute;
+
+    left:50%;
+    top:0;
+
+    width:100%;
+    height:100%;
+
+    transform:
+        translateX(-50%);
+
+    transform-style:preserve-3d;
+}
+
+
+/* =====================================================
+   TULIPÁN INDIVIDUAL
+===================================================== */
+
+.tulip{
+    position:absolute;
+
+    width:70px;
+    height:180px;
+
+    transform-origin:
+        50% 100%;
+
+    transform-style:preserve-3d;
+
+    pointer-events:none;
+}
+
+
+/* =====================================================
+   TALLO
+===================================================== */
+
+.stem{
+    position:absolute;
+
+    left:50%;
+    bottom:0;
+
+    width:7px;
+    height:125px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            to right,
+            #214d26,
+            #579143,
+            #285b2d
+        );
+
+    box-shadow:
+        1px 0 2px rgba(0,0,0,.18);
+}
+
+
+/* =====================================================
+   HOJAS
+===================================================== */
+
+.leaf{
+    position:absolute;
+
+    width:58px;
+    height:25px;
+
+    bottom:38px;
+
+    border-radius:
+        100% 0 100% 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1d4b25,
+            #4f8b3b,
+            #6c9d4a
+        );
+
+    transform-origin:
+        0 50%;
+}
+
+.leaf.left{
+    left:34px;
+    transform:rotate(-25deg);
+}
+
+.leaf.right{
+    left:33px;
+    bottom:65px;
+    transform:scaleX(-1) rotate(-20deg);
+}
+
+
+/* =====================================================
+   FLOR
+===================================================== */
+
+.flower{
+    position:absolute;
+
+    left:50%;
+    top:10px;
+
+    width:78px;
+    height:78px;
+
+    transform:
+        translateX(-50%);
+
+    filter:
+        drop-shadow(
+            0 5px 5px rgba(0,0,0,.12)
+        );
+}
+
+
+/* =====================================================
+   PÉTALOS DEL TULIPÁN
+===================================================== */
+
+.flower .petal{
+    position:absolute;
+
+    top:8px;
+
+    width:39px;
+    height:61px;
+
+    border-radius:
+        55% 55% 45% 45%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #fffde0 0%,
+            #fff28a 22%,
+            #ffd82d 62%,
+            #e6a500 100%
+        );
+
+    box-shadow:
+        inset 0 0 5px rgba(255,255,255,.45);
+}
+
+
+/* pétalo izquierdo */
+
+.flower .petal:nth-child(1){
+    left:2px;
+
+    transform:
+        rotate(-20deg);
+}
+
+
+/* pétalo central */
+
+.flower .petal:nth-child(2){
+    left:19px;
+    top:2px;
+
+    height:67px;
+
+    z-index:3;
+}
+
+
+/* pétalo derecho */
+
+.flower .petal:nth-child(3){
+    right:2px;
+
+    transform:
+        rotate(20deg);
+}
+
+
+/* =====================================================
+   CENTRO DE LA FLOR
+===================================================== */
+
+.flower .center{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:18px;
+    height:18px;
+
+    transform:
+        translate(-50%,-20%);
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #fff3a0,
+            #e1a70a 55%,
+            #98620b
+        );
+
+    z-index:5;
+}
+
+
+/* =====================================================
+   PÉTALOS QUE PASAN CERCA DE LA CÁMARA
+===================================================== */
+
+.near-petal{
+    position:absolute;
+
+    width:25px;
+    height:45px;
+
+    border-radius:
+        60% 40% 60% 40%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffbd0,
+            #ffdf39,
+            #d99b00
+        );
+
+    opacity:.8;
+
+    pointer-events:none;
+
+    z-index:8;
+}
+
+
+/* =====================================================
+   BRISA
+===================================================== */
+
+.tulip{
+    animation:
+        breeze
+        3s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+@keyframes breeze{
+
+    from{
+        margin-left:-2px;
+    }
+
+    to{
+        margin-left:3px;
+    }
+
+}
+
+
+/* =====================================================
+   VIÑETA
+===================================================== */
+
+.vignette{
+    position:fixed;
+    inset:0;
+
+    z-index:15;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 45%,
+            rgba(15,35,12,.08) 70%,
+            rgba(5,20,8,.35) 100%
+        );
+}
+
+
+/* =====================================================
+   MENSAJE
+===================================================== */
 
 .message{
     position:fixed;
 
     left:50%;
-    bottom:7%;
+    bottom:6%;
 
     width:100%;
 
-    transform:
-        translateX(-50%)
-        translateY(20px);
-
     text-align:center;
 
-    z-index:20;
+    transform:
+        translate(-50%,30px);
 
     opacity:0;
 
-    animation:
-        messageAppear
-        2.5s
-        ease-out
-        9s
-        forwards;
+    z-index:30;
 
     pointer-events:none;
 
+    animation:
+        appearMessage
+        2.5s
+        ease-out
+        8s
+        forwards;
+
     text-shadow:
-        0 2px 8px rgba(0,0,0,.35),
-        0 0 20px rgba(255,255,220,.35);
+        0 3px 10px rgba(0,0,0,.45),
+        0 0 25px rgba(255,245,160,.3);
 }
 
 .love{
     display:block;
 
-    font-family:'Great Vibes',cursive;
+    font-family:
+        'Great Vibes',
+        cursive;
 
     font-size:
         clamp(60px,12vw,105px);
 
-    color:#fff9ce;
-
     line-height:.95;
+
+    color:#fff8bd;
 }
 
-.flowers{
+.words{
     display:block;
 
     margin-top:8px;
 
-    font-family:'Cormorant Garamond',serif;
+    font-family:
+        'Cormorant Garamond',
+        serif;
 
     font-size:
         clamp(24px,5vw,40px);
 
-    letter-spacing:3px;
+    letter-spacing:2px;
 
-    color:#fffef0;
+    color:#fffde8;
 }
 
-@keyframes messageAppear{
+@keyframes appearMessage{
 
     from{
         opacity:0;
 
         transform:
-            translateX(-50%)
-            translateY(25px);
+            translate(-50%,30px);
     }
 
     to{
         opacity:1;
 
         transform:
-            translateX(-50%)
-            translateY(0);
+            translate(-50%,0);
     }
 }
 
-/* =========================================
-              VIÑETA
-========================================= */
 
-.vignette{
-    position:fixed;
-    inset:0;
-
-    pointer-events:none;
-
-    z-index:10;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            transparent 40%,
-            rgba(0,20,5,.08) 65%,
-            rgba(0,15,5,.35) 100%
-        );
-}
-
-/* =========================================
-              MÓVIL
-========================================= */
+/* =====================================================
+   MÓVIL
+===================================================== */
 
 @media(max-width:600px){
 
     .sun{
-        width:95px;
-        height:95px;
+        width:90px;
+        height:90px;
 
-        top:10%;
-        right:8%;
+        right:7%;
+        top:8%;
+    }
+
+    .field{
+        perspective:500px;
     }
 
     .message{
-        bottom:7%;
+        bottom:5%;
     }
 
     .love{
-        font-size:60px;
+        font-size:58px;
     }
 
-    .flowers{
-        font-size:25px;
-        letter-spacing:1.5px;
+    .words{
+        font-size:24px;
     }
 
 }
@@ -316,19 +626,27 @@ body{
 </style>
 </head>
 
+
 <body>
 
-<canvas id="garden"></canvas>
+<div class="sky"></div>
 
 <div class="sun"></div>
 
-<div class="cloud cloud1"></div>
-<div class="cloud cloud2"></div>
-<div class="cloud cloud3"></div>
+<div class="cloud one"></div>
+<div class="cloud two"></div>
+<div class="cloud three"></div>
 
-<div class="atmosphere"></div>
+<div class="horizon"></div>
+
+<div class="field">
+
+    <div class="world" id="world"></div>
+
+</div>
 
 <div class="vignette"></div>
+
 
 <div class="message">
 
@@ -336,7 +654,7 @@ body{
         Te amo
     </span>
 
-    <span class="flowers">
+    <span class="words">
         Flores amarillas para ti 🌷
     </span>
 
@@ -346,787 +664,443 @@ body{
 <script>
 
 /* =====================================================
-        CAMPO INFINITO DE TULIPANES
+   CONFIGURACIÓN
 ===================================================== */
 
-const canvas = document.getElementById("garden");
-const ctx = canvas.getContext("2d");
+const world =
+    document.getElementById("world");
 
-let width = 0;
-let height = 0;
+const field =
+    document.querySelector(".field");
 
-let tulips = [];
 
-let cameraZ = 0;
+/*
+   MUCHÍSIMOS TULIPANES
+*/
 
-let lastTime = performance.now();
+const TOTAL =
+    window.innerWidth < 600
+        ? 260
+        : 420;
 
-let wind = 0;
+
+/*
+   Profundidad del mundo.
+
+   Los tulipanes nacen en diferentes
+   distancias y se van acercando.
+*/
+
+const MAX_Z = 1000;
+
+const SPEED = 0.55;
 
 
 /* =====================================================
-        CONFIGURACIÓN
+   CREAR TULIPÁN
 ===================================================== */
 
-const CONFIG = {
+function makeTulip(){
 
-    /* cantidad de flores */
-    flowers: 850,
+    const tulip =
+        document.createElement("div");
 
-    /* velocidad de avance */
-    speed: 0.000085,
-
-    /* profundidad del mundo */
-    depth: 1,
-
-    /* ancho del campo */
-    fieldWidth: 22,
-
-    /* cantidad de pétalos */
-    petals: 6
-
-};
+    tulip.className =
+        "tulip";
 
 
-/* =====================================================
-        REDIMENSIONAR
-===================================================== */
+    /*
+       Flor
+    */
 
-function resize(){
+    const flower =
+        document.createElement("div");
 
-    const dpr =
-        Math.min(window.devicePixelRatio || 1,2);
+    flower.className =
+        "flower";
 
-    width = window.innerWidth;
-    height = window.innerHeight;
 
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
+    for(let i=0;i<3;i++){
 
-    canvas.style.width = width + "px";
-    canvas.style.height = height + "px";
+        const petal =
+            document.createElement("div");
 
-    ctx.setTransform(
-        dpr,
-        0,
-        0,
-        dpr,
-        0,
-        0
+        petal.className =
+            "petal";
+
+        flower.appendChild(
+            petal
+        );
+
+    }
+
+
+    const center =
+        document.createElement("div");
+
+    center.className =
+        "center";
+
+    flower.appendChild(
+        center
     );
 
-}
 
-window.addEventListener(
-    "resize",
-    resize
-);
+    /*
+       Tallo
+    */
 
-resize();
+    const stem =
+        document.createElement("div");
+
+    stem.className =
+        "stem";
 
 
-/* =====================================================
-        CREAR TULIPANES
-===================================================== */
+    /*
+       Hojas
+    */
 
-function createTulip(){
+    const leafLeft =
+        document.createElement("div");
 
-    return {
+    leafLeft.className =
+        "leaf left";
+
+
+    const leafRight =
+        document.createElement("div");
+
+    leafRight.className =
+        "leaf right";
+
+
+    tulip.appendChild(
+        flower
+    );
+
+    tulip.appendChild(
+        stem
+    );
+
+    tulip.appendChild(
+        leafLeft
+    );
+
+    tulip.appendChild(
+        leafRight
+    );
+
+
+    world.appendChild(
+        tulip
+    );
+
+
+    /*
+       Posición inicial
+    */
+
+    tulip.userData = {
 
         /*
-         x = posición horizontal
-         y = posición lateral/altura
-         z = profundidad
+           X:
+
+           -1 = extremo izquierdo
+            0 = centro
+            1 = extremo derecho
         */
 
         x:
-            (Math.random() - .5)
-            * CONFIG.fieldWidth,
+            (Math.random()-.5)
+            * 2.4,
 
-        y:
-            Math.random() * .8
-            + .1,
+        /*
+           Z:
+
+           0 = cámara
+           1000 = horizonte
+        */
 
         z:
-            Math.random() * CONFIG.depth,
+            Math.random()
+            * MAX_Z,
 
-        size:
-            .55 +
-            Math.random() * .85,
+        /*
+           Variación de tamaño
+        */
 
-        sway:
-            Math.random() * Math.PI * 2,
+        scale:
+            .65 +
+            Math.random()
+            * .65,
 
-        swaySpeed:
-            .5 +
-            Math.random() * 1.5,
+        /*
+           Pequeña inclinación
+        */
 
-        lean:
-            (Math.random() - .5) * .15,
-
-        brightness:
-            .75 +
-            Math.random() * .3,
-
-        /* pequeñas variaciones de amarillo */
-        yellow:
-            45 +
-            Math.random() * 25
+        tilt:
+            (Math.random()-.5)
+            * 10
 
     };
 
-}
 
-
-/* =====================================================
-        GENERAR MUCHÍSIMOS TULIPANES
-===================================================== */
-
-for(
-    let i = 0;
-    i < CONFIG.flowers;
-    i++
-){
-
-    tulips.push(
-        createTulip()
-    );
+    return tulip;
 
 }
 
 
 /* =====================================================
-        PROYECCIÓN 3D
+   GENERAR EL CAMPO
 ===================================================== */
-
-function project(tulip){
-
-    let z =
-        tulip.z -
-        cameraZ;
-
-    /*
-      Cuando una flor queda detrás,
-      reaparece al fondo.
-    */
-
-    while(z < 0.02){
-
-        tulip.z += CONFIG.depth;
-
-        z =
-            tulip.z -
-            cameraZ;
-    }
-
-    const perspective =
-        1 / z;
-
-    const horizon =
-        height * .43;
-
-    const x =
-        width / 2 +
-        tulip.x *
-        perspective *
-        width *
-        .035;
-
-    const groundY =
-        horizon +
-        perspective *
-        height *
-        .30;
-
-    const size =
-        tulip.size *
-        perspective *
-        30;
-
-    return {
-
-        x,
-        groundY,
-        size,
-        z,
-        perspective
-    };
-
-}
-
-
-/* =====================================================
-        DIBUJAR TALLO
-===================================================== */
-
-function drawStem(
-    x,
-    groundY,
-    size,
-    sway
-){
-
-    const stemHeight =
-        size * 4.7;
-
-    const curve =
-        Math.sin(
-            wind * .0015 +
-            sway
-        ) * size * .55;
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-        x,
-        groundY
-    );
-
-    ctx.quadraticCurveTo(
-
-        x + curve * .35,
-        groundY - stemHeight * .55,
-
-        x + curve,
-        groundY - stemHeight
-
-    );
-
-    ctx.lineWidth =
-        Math.max(1,size*.12);
-
-    ctx.strokeStyle =
-        "#397438";
-
-    ctx.stroke();
-
-}
-
-
-/* =====================================================
-        DIBUJAR HOJAS
-===================================================== */
-
-function drawLeaf(
-    x,
-    y,
-    size,
-    direction
-){
-
-    ctx.save();
-
-    ctx.translate(
-        x,
-        y
-    );
-
-    ctx.rotate(
-        direction
-    );
-
-    ctx.beginPath();
-
-    ctx.moveTo(0,0);
-
-    ctx.quadraticCurveTo(
-        size*.9,
-        -size*.35,
-        size*1.25,
-        -size*.05
-    );
-
-    ctx.quadraticCurveTo(
-        size*.7,
-        size*.05,
-        0,
-        0
-    );
-
-    const gradient =
-        ctx.createLinearGradient(
-            0,
-            0,
-            size,
-            0
-        );
-
-    gradient.addColorStop(
-        0,
-        "#244f28"
-    );
-
-    gradient.addColorStop(
-        .6,
-        "#4e8a3d"
-    );
-
-    gradient.addColorStop(
-        1,
-        "#79a955"
-    );
-
-    ctx.fillStyle = gradient;
-
-    ctx.fill();
-
-    ctx.restore();
-
-}
-
-
-/* =====================================================
-        DIBUJAR TULIPÁN
-===================================================== */
-
-function drawTulip(
-    tulip,
-    projection
-){
-
-    const {
-        x,
-        groundY,
-        size
-    } = projection;
-
-    /*
-      Si está demasiado lejos,
-      lo hacemos muy pequeño.
-    */
-
-    if(size < .5){
-
-        return;
-    }
-
-    const sway =
-        Math.sin(
-            wind *
-            .001 *
-            tulip.swaySpeed +
-            tulip.sway
-        );
-
-    const stemX =
-        x +
-        sway *
-        size *
-        .08;
-
-    const stemTop =
-        groundY -
-        size *
-        4.7;
-
-
-    /* TALLO */
-
-    drawStem(
-        x,
-        groundY,
-        size,
-        tulip.sway
-    );
-
-
-    /* HOJA IZQUIERDA */
-
-    drawLeaf(
-        x -
-        size*.05,
-        groundY -
-        size*1.8,
-
-        size*.95,
-
-        -1.9 +
-        sway*.12
-    );
-
-
-    /* HOJA DERECHA */
-
-    drawLeaf(
-        x +
-        size*.05,
-        groundY -
-        size*2.3,
-
-        size*.8,
-
-        -.55 +
-        sway*.12
-    );
-
-
-    /*
-      CABEZA DEL TULIPÁN
-    */
-
-    const flowerX =
-        stemX;
-
-    const flowerY =
-        stemTop;
-
-
-    const flowerWidth =
-        size * 1.65;
-
-    const flowerHeight =
-        size * 2.0;
-
-
-    ctx.save();
-
-    ctx.translate(
-        flowerX,
-        flowerY
-    );
-
-    ctx.rotate(
-        tulip.lean +
-        sway*.035
-    );
-
-
-    /*
-      Resplandor muy suave
-      en las flores cercanas
-    */
-
-    if(size > 12){
-
-        ctx.shadowColor =
-            "rgba(255,220,60,.22)";
-
-        ctx.shadowBlur =
-            size*.5;
-    }
-
-
-    /*
-      PÉTALO IZQUIERDO
-    */
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-        0,
-        flowerHeight*.35
-    );
-
-    ctx.bezierCurveTo(
-        -flowerWidth*.9,
-        flowerHeight*.05,
-        -flowerWidth*.65,
-        -flowerHeight*.7,
-        -flowerWidth*.15,
-        -flowerHeight*.82
-    );
-
-    ctx.bezierCurveTo(
-        -flowerWidth*.05,
-        -flowerHeight*.25,
-        flowerWidth*.05,
-        flowerHeight*.1,
-        0,
-        flowerHeight*.35
-    );
-
-    const leftGradient =
-        ctx.createLinearGradient(
-            0,
-            -flowerHeight,
-            0,
-            flowerHeight
-        );
-
-    leftGradient.addColorStop(
-        0,
-        "#fffbd1"
-    );
-
-    leftGradient.addColorStop(
-        .45,
-        "#ffe94c"
-    );
-
-    leftGradient.addColorStop(
-        1,
-        "#dca800"
-    );
-
-    ctx.fillStyle =
-        leftGradient;
-
-    ctx.fill();
-
-
-    /*
-      PÉTALO CENTRAL
-    */
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-        0,
-        flowerHeight*.4
-    );
-
-    ctx.bezierCurveTo(
-        -flowerWidth*.35,
-        flowerHeight*.05,
-        -flowerWidth*.32,
-        -flowerHeight*.85,
-        0,
-        -flowerHeight
-    );
-
-    ctx.bezierCurveTo(
-        flowerWidth*.32,
-        -flowerHeight*.85,
-        flowerWidth*.35,
-        flowerHeight*.05,
-        0,
-        flowerHeight*.4
-    );
-
-    const centerGradient =
-        ctx.createLinearGradient(
-            0,
-            -flowerHeight,
-            0,
-            flowerHeight
-        );
-
-    centerGradient.addColorStop(
-        0,
-        "#fffef0"
-    );
-
-    centerGradient.addColorStop(
-        .35,
-        "#fff06b"
-    );
-
-    centerGradient.addColorStop(
-        .8,
-        "#f5c51e"
-    );
-
-    centerGradient.addColorStop(
-        1,
-        "#c88e00"
-    );
-
-    ctx.fillStyle =
-        centerGradient;
-
-    ctx.fill();
-
-
-    /*
-      PÉTALO DERECHO
-    */
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-        0,
-        flowerHeight*.35
-    );
-
-    ctx.bezierCurveTo(
-        flowerWidth*.9,
-        flowerHeight*.05,
-        flowerWidth*.65,
-        -flowerHeight*.7,
-        flowerWidth*.15,
-        -flowerHeight*.82
-    );
-
-    ctx.bezierCurveTo(
-        flowerWidth*.05,
-        -flowerHeight*.25,
-        -flowerWidth*.05,
-        flowerHeight*.1,
-        0,
-        flowerHeight*.35
-    );
-
-    const rightGradient =
-        ctx.createLinearGradient(
-            0,
-            -flowerHeight,
-            0,
-            flowerHeight
-        );
-
-    rightGradient.addColorStop(
-        0,
-        "#fffbd0"
-    );
-
-    rightGradient.addColorStop(
-        .45,
-        "#ffea43"
-    );
-
-    rightGradient.addColorStop(
-        1,
-        "#dda700"
-    );
-
-    ctx.fillStyle =
-        rightGradient;
-
-    ctx.fill();
-
-
-    /*
-      PEQUEÑO DETALLE CENTRAL
-    */
-
-    if(size > 10){
-
-        ctx.beginPath();
-
-        ctx.ellipse(
-            0,
-            flowerHeight*.25,
-            size*.15,
-            size*.08,
-            0,
-            0,
-            Math.PI*2
-        );
-
-        ctx.fillStyle =
-            "#d49a05";
-
-        ctx.fill();
-    }
-
-
-    ctx.restore();
-
-}
-
-
-/* =====================================================
-        ORDENAR POR PROFUNDIDAD
-===================================================== */
-
-function sortFlowers(){
-
-    tulips.sort(
-        (a,b)=>
-            (b.z-cameraZ) -
-            (a.z-cameraZ)
-    );
-
-}
-
-
-/* =====================================================
-        PÉTALOS FLOTANDO
-===================================================== */
-
-const floatingPetals = [];
 
 for(
     let i=0;
-    i<45;
+    i<TOTAL;
     i++
 ){
 
-    floatingPetals.push({
+    makeTulip();
+
+}
+
+
+/* =====================================================
+   PROYECCIÓN
+===================================================== */
+
+function updateTulip(
+    tulip
+){
+
+    const d =
+        tulip.userData;
+
+
+    /*
+       Avanzamos hacia la cámara.
+    */
+
+    d.z -= SPEED;
+
+
+    /*
+       Cuando una flor nos pasa,
+       la mandamos nuevamente al
+       horizonte.
+
+       Esto crea el efecto infinito.
+    */
+
+    if(d.z < 1){
+
+        d.z =
+            MAX_Z +
+            Math.random()*300;
+
+        d.x =
+            (Math.random()-.5)
+            * 2.4;
+
+        d.scale =
+            .65 +
+            Math.random()
+            * .65;
+    }
+
+
+    /*
+       Perspectiva.
+
+       Mientras menor sea Z,
+       mayor se vuelve la flor.
+    */
+
+    const perspective =
+        850 /
+        (d.z + 20);
+
+
+    /*
+       Posición horizontal.
+
+       Los tulipanes se abren
+       hacia los lados.
+    */
+
+    const x =
+        window.innerWidth/2 +
+        d.x *
+        window.innerWidth *
+        perspective *
+        .55;
+
+
+    /*
+       Horizonte del campo.
+    */
+
+    const horizon =
+        window.innerHeight *
+        .10;
+
+
+    /*
+       Posición vertical.
+
+       Cerca = abajo.
+       Lejos = horizonte.
+    */
+
+    const y =
+        horizon +
+        perspective *
+        window.innerHeight *
+        .78;
+
+
+    /*
+       Tamaño.
+    */
+
+    const scale =
+        perspective *
+        d.scale *
+        1.15;
+
+
+    /*
+       Si está muy lejos,
+       todavía debe ser visible.
+    */
+
+    const opacity =
+        Math.min(
+            1,
+            Math.max(
+                .25,
+                perspective*2.8
+            )
+        );
+
+
+    tulip.style.transform =
+        `
+        translate3d(
+            ${x}px,
+            ${y}px,
+            0
+        )
+        rotate(${d.tilt}deg)
+        scale(${scale})
+        `;
+
+
+    tulip.style.opacity =
+        opacity;
+
+
+    /*
+       Las flores cercanas
+       quedan por encima.
+    */
+
+    tulip.style.zIndex =
+        Math.floor(
+            2000-d.z
+        );
+
+}
+
+
+/* =====================================================
+   PETALITOS QUE PASAN VOLANDO
+===================================================== */
+
+const petals = [];
+
+for(
+    let i=0;
+    i<30;
+    i++
+){
+
+    const p =
+        document.createElement(
+            "div"
+        );
+
+    p.className =
+        "near-petal";
+
+    field.appendChild(p);
+
+    petals.push({
+
+        element:p,
 
         x:
-            Math.random()*width,
+            Math.random()
+            * window.innerWidth,
 
         y:
-            Math.random()*height,
+            Math.random()
+            * window.innerHeight,
 
         speed:
-            .15+
-            Math.random()*.45,
-
-        size:
-            2+
-            Math.random()*4,
-
-        angle:
-            Math.random()*Math.PI*2,
+            .4+
+            Math.random()*.8,
 
         drift:
-            .2+
-            Math.random()*.8
+            (Math.random()-.5)*1.2,
+
+        rotate:
+            Math.random()*360
 
     });
 
 }
 
 
-function drawFloatingPetals(){
+/* =====================================================
+   ANIMAR PETALITOS
+===================================================== */
+
+function updatePetals(){
 
     for(
-        const p of floatingPetals
+        const p of petals
     ){
 
         p.y += p.speed;
 
-        p.x +=
-            Math.sin(
-                wind*.001+
-                p.angle
-            )*
-            p.drift;
+        p.x += p.drift;
+
+        p.rotate += .8;
+
 
         if(
             p.y >
-            height+20
+            window.innerHeight
         ){
 
-            p.y=-20;
+            p.y=-50;
 
             p.x=
-                Math.random()*
-                width;
+                Math.random()
+                * window.innerWidth;
         }
 
-        ctx.save();
 
-        ctx.translate(
-            p.x,
-            p.y
-        );
-
-        ctx.rotate(
-            p.angle+
-            wind*.001
-        );
-
-        ctx.beginPath();
-
-        ctx.ellipse(
-            0,
-            0,
-            p.size,
-            p.size*1.8,
-            0,
-            0,
-            Math.PI*2
-        );
-
-        ctx.fillStyle =
-            "rgba(255,231,75,.65)";
-
-        ctx.fill();
-
-        ctx.restore();
+        p.element.style.transform =
+            `
+            translate(
+                ${p.x}px,
+                ${p.y}px
+            )
+            rotate(${p.rotate}deg)
+            `;
 
     }
 
@@ -1134,260 +1108,34 @@ function drawFloatingPetals(){
 
 
 /* =====================================================
-        HORIZONTE
+   ANIMACIÓN PRINCIPAL
 ===================================================== */
 
-function drawHorizon(){
+function animate(){
 
-    const horizon =
-        height*.43;
-
-    /*
-      Montañas/árboles lejanos
-    */
-
-    ctx.fillStyle =
-        "rgba(40,73,42,.42)";
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-        0,
-        horizon+35
-    );
-
-    for(
-        let x=0;
-        x<=width;
-        x+=35
-    ){
-
-        const y =
-            horizon+
-            25+
-            Math.sin(x*.012)*12+
-            Math.sin(x*.035)*7;
-
-        ctx.lineTo(
-            x,
-            y
+    const tulips =
+        document.querySelectorAll(
+            ".tulip"
         );
 
-    }
-
-    ctx.lineTo(
-        width,
-        height
-    );
-
-    ctx.lineTo(
-        0,
-        height
-    );
-
-    ctx.closePath();
-
-    ctx.fill();
-
 
     /*
-      Camino central
-    */
-
-    const center =
-        width/2;
-
-    const pathTop =
-        center;
-
-    const pathBottom =
-        width*.95;
-
-    const gradient =
-        ctx.createLinearGradient(
-            0,
-            horizon,
-            0,
-            height
-        );
-
-    gradient.addColorStop(
-        0,
-        "rgba(202,184,126,.18)"
-    );
-
-    gradient.addColorStop(
-        1,
-        "rgba(173,145,82,.42)"
-    );
-
-    ctx.fillStyle =
-        gradient;
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-        center-12,
-        horizon
-    );
-
-    ctx.lineTo(
-        center+12,
-        horizon
-    );
-
-    ctx.lineTo(
-        center+
-        pathBottom/2,
-        height
-    );
-
-    ctx.lineTo(
-        center-
-        pathBottom/2,
-        height
-    );
-
-    ctx.closePath();
-
-    ctx.fill();
-
-}
-
-
-/* =====================================================
-        ANIMACIÓN PRINCIPAL
-===================================================== */
-
-function animate(now){
-
-    const delta =
-        Math.min(
-            now-lastTime,
-            40
-        );
-
-    lastTime =
-        now;
-
-    wind += delta;
-
-    /*
-      Avance constante.
-    */
-
-    cameraZ +=
-        delta *
-        CONFIG.speed;
-
-
-    /*
-      Cuando llegamos al final
-      reiniciamos la profundidad.
-      El ojo no debería notarlo.
-    */
-
-    if(
-        cameraZ >
-        CONFIG.depth
-    ){
-
-        cameraZ -=
-            CONFIG.depth;
-    }
-
-
-    /* limpiar */
-
-    ctx.clearRect(
-        0,
-        0,
-        width,
-        height
-    );
-
-
-    /*
-      Cielo
-    */
-
-    const sky =
-        ctx.createLinearGradient(
-            0,
-            0,
-            0,
-            height
-        );
-
-    sky.addColorStop(
-        0,
-        "#a7c9d8"
-    );
-
-    sky.addColorStop(
-        .38,
-        "#dce8df"
-    );
-
-    sky.addColorStop(
-        .55,
-        "#91aa68"
-    );
-
-    sky.addColorStop(
-        1,
-        "#24451e"
-    );
-
-    ctx.fillStyle =
-        sky;
-
-    ctx.fillRect(
-        0,
-        0,
-        width,
-        height
-    );
-
-
-    /*
-      Horizonte
-    */
-
-    drawHorizon();
-
-
-    /*
-      Ordenar las flores.
-    */
-
-    sortFlowers();
-
-
-    /*
-      Dibujar tulipanes.
+       Actualizamos TODOS los
+       tulipanes.
     */
 
     for(
         const tulip of tulips
     ){
 
-        const projection =
-            project(tulip);
-
-        drawTulip(
-            tulip,
-            projection
+        updateTulip(
+            tulip
         );
 
     }
 
 
-    /*
-      Pétalos flotando.
-    */
-
-    drawFloatingPetals();
+    updatePetals();
 
 
     requestAnimationFrame(
@@ -1398,11 +1146,28 @@ function animate(now){
 
 
 /* =====================================================
-        INICIAR
+   INICIAR
 ===================================================== */
 
-requestAnimationFrame(
-    animate
+animate();
+
+
+/* =====================================================
+   AJUSTE AL ROTAR EL CELULAR
+===================================================== */
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        /*
+          No hace falta reconstruir
+          el campo; simplemente
+          dejamos que el navegador
+          recalcule las posiciones.
+        */
+
+    }
 );
 
 </script>

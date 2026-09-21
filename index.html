@@ -37,10 +37,12 @@ body{
 
 body{
     background:#020403;
+
     font-family:
         "Cormorant Garamond",
         Georgia,
         serif;
+
     color:white;
 }
 
@@ -166,7 +168,7 @@ body{
 
 
 /* =========================
-   BRILLO DETRÁS DE LA FLOR
+   BRILLO
 ========================= */
 
 .glow{
@@ -239,7 +241,7 @@ body{
 
 
 /* =========================
-   FLOR COMPLETA
+   FLOR
 ========================= */
 
 .flower{
@@ -286,8 +288,7 @@ body{
             #1c4b25
         );
 
-    transform-origin:
-        bottom;
+    transform-origin:bottom;
 
     animation:
         growStem
@@ -423,7 +424,6 @@ body{
 
 /* =========================
    CABEZA DE LA FLOR
-   NO SE MODIFICA
 ========================= */
 
 .flower-head{
@@ -482,7 +482,7 @@ body{
 
 /* =========================
    PÉTALOS
-   NO SE MODIFICAN
+   NUEVA GEOMETRÍA
 ========================= */
 
 .petal{
@@ -495,8 +495,13 @@ body{
     width:52px;
     height:88px;
 
+    /*
+       La parte inferior del pétalo
+       queda exactamente en el centro.
+    */
+
     margin-left:-26px;
-    margin-top:-44px;
+    margin-top:-88px;
 
     border-radius:
         55% 55% 48% 48%;
@@ -509,6 +514,11 @@ body{
             #ffd21f 55%,
             #e9a900 100%
         );
+
+    /*
+       El punto de giro es la base
+       del pétalo, justo en el centro.
+    */
 
     transform-origin:
         50% 100%;
@@ -530,81 +540,56 @@ body{
 ========================= */
 
 .petal:nth-child(1){
-    transform:
-        rotate(0deg)
-        translateY(-57px);
+    transform:rotate(0deg);
 }
 
 .petal:nth-child(2){
-    transform:
-        rotate(30deg)
-        translateY(-57px);
+    transform:rotate(30deg);
 }
 
 .petal:nth-child(3){
-    transform:
-        rotate(60deg)
-        translateY(-57px);
+    transform:rotate(60deg);
 }
 
 .petal:nth-child(4){
-    transform:
-        rotate(90deg)
-        translateY(-57px);
+    transform:rotate(90deg);
 }
 
 .petal:nth-child(5){
-    transform:
-        rotate(120deg)
-        translateY(-57px);
+    transform:rotate(120deg);
 }
 
 .petal:nth-child(6){
-    transform:
-        rotate(150deg)
-        translateY(-57px);
+    transform:rotate(150deg);
 }
 
 .petal:nth-child(7){
-    transform:
-        rotate(180deg)
-        translateY(-57px);
+    transform:rotate(180deg);
 }
 
 .petal:nth-child(8){
-    transform:
-        rotate(210deg)
-        translateY(-57px);
+    transform:rotate(210deg);
 }
 
 .petal:nth-child(9){
-    transform:
-        rotate(240deg)
-        translateY(-57px);
+    transform:rotate(240deg);
 }
 
 .petal:nth-child(10){
-    transform:
-        rotate(270deg)
-        translateY(-57px);
+    transform:rotate(270deg);
 }
 
 .petal:nth-child(11){
-    transform:
-        rotate(300deg)
-        translateY(-57px);
+    transform:rotate(300deg);
 }
 
 .petal:nth-child(12){
-    transform:
-        rotate(330deg)
-        translateY(-57px);
+    transform:rotate(330deg);
 }
 
 
 /* =========================
-   CENTRO DE LA FLOR
-   ÚNICO ELEMENTO CORREGIDO
+   CENTRO
 ========================= */
 
 .center{
@@ -612,14 +597,7 @@ body{
     position:absolute;
 
     left:50%;
-
-    /*
-       El centro se baja 12px.
-       Todo lo demás de la flor
-       permanece exactamente igual.
-    */
-
-    top:calc(50% + 12px);
+    top:50%;
 
     width:72px;
     height:72px;
@@ -688,7 +666,7 @@ body{
 
 
 /* =========================
-   MOVIMIENTO DE LA FLOR
+   MOVIMIENTO
 ========================= */
 
 .flower-head{
@@ -1094,16 +1072,13 @@ body{
 
     <div class="message">
 
-
         <span class="love">
             Te amo
         </span>
 
-
         <span class="flowers">
             Flores amarillas para ti 🌻
         </span>
-
 
     </div>
 
@@ -1115,7 +1090,7 @@ body{
 
 
 /* =========================
-   CREAR ESTRELLAS
+   ESTRELLAS
 ========================= */
 
 const stars =
@@ -1127,26 +1102,20 @@ for(let i = 0; i < 45; i++){
     const star =
         document.createElement("div");
 
-
     star.className =
         "star";
-
 
     star.style.left =
         Math.random() * 100 + "%";
 
-
     star.style.top =
         Math.random() * 70 + "%";
-
 
     star.style.animationDelay =
         Math.random() * 4 + "s";
 
-
     star.style.animationDuration =
         (2 + Math.random() * 3) + "s";
-
 
     stars.appendChild(star);
 
@@ -1154,7 +1123,7 @@ for(let i = 0; i < 45; i++){
 
 
 /* =========================
-   CREAR PÉTALOS
+   PÉTALOS QUE CAEN
 ========================= */
 
 const petalsContainer =
@@ -1168,14 +1137,11 @@ for(let i = 0; i < 18; i++){
     const petal =
         document.createElement("div");
 
-
     petal.className =
         "falling-petal";
 
-
     petal.style.left =
         Math.random() * 100 + "%";
-
 
     petal.style.setProperty(
 
@@ -1186,37 +1152,27 @@ for(let i = 0; i < 18; i++){
 
     );
 
-
     petal.style.animationDuration =
-
         (7 + Math.random() * 7)
         + "s";
 
-
     petal.style.animationDelay =
-
         (6 + Math.random() * 8)
         + "s";
 
-
     petal.style.width =
-
         (10 + Math.random() * 9)
         + "px";
 
-
     petal.style.height =
-
         (16 + Math.random() * 12)
         + "px";
-
 
     petalsContainer.appendChild(
         petal
     );
 
 }
-
 
 </script>
 

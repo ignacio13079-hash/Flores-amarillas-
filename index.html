@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Flores amarillas para ti 🌼</title>
+<title>Flores amarillas para ti 🌷</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,8 @@
     box-sizing:border-box;
 }
 
-html,body{
+html,
+body{
     margin:0;
     width:100%;
     height:100%;
@@ -24,628 +25,292 @@ html,body{
 }
 
 body{
-    background:
-        radial-gradient(circle at 50% 48%,rgba(45,85,45,.22),transparent 35%),
-        linear-gradient(to bottom,#020806 0%,#06120d 55%,#0b1c12 100%);
+    background:#dce9df;
     font-family:'Cormorant Garamond',serif;
-    color:white;
 }
 
-/* =========================
-        LUNA
-========================= */
+/* =========================================
+              CANVAS PRINCIPAL
+========================================= */
 
-.moon{
-    position:absolute;
-    width:125px;
-    height:125px;
-    top:8%;
-    right:12%;
+#garden{
+    position:fixed;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    display:block;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #a9c7d4 0%,
+            #d9e4d6 42%,
+            #718c4c 65%,
+            #294b22 100%
+        );
+}
+
+/* =========================================
+              ATMÓSFERA
+========================================= */
+
+.atmosphere{
+    position:fixed;
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 42%,
+            rgba(255,255,235,.38),
+            transparent 35%
+        ),
+        linear-gradient(
+            to bottom,
+            rgba(255,255,255,.08),
+            transparent 45%,
+            rgba(0,30,10,.18)
+        );
+
+    z-index:2;
+}
+
+/* =========================================
+              SOL
+========================================= */
+
+.sun{
+    position:fixed;
+
+    width:150px;
+    height:150px;
+
+    top:9%;
+    right:13%;
+
     border-radius:50%;
 
     background:
-        radial-gradient(circle at 35% 35%,
-        #fffef0 0%,
-        #fff9c9 45%,
-        #f4e9a4 75%,
-        #d8cc88 100%);
+        radial-gradient(
+            circle,
+            #fffde4 0%,
+            #fff4a8 42%,
+            #f6d76a 72%,
+            rgba(246,215,106,.1) 100%
+        );
 
     box-shadow:
-        0 0 30px rgba(255,248,190,.35),
-        0 0 80px rgba(255,245,180,.12);
+        0 0 35px rgba(255,239,150,.75),
+        0 0 100px rgba(255,228,110,.35);
 
-    opacity:0;
-    animation:moonAppear 2s ease-out 1s forwards;
-}
-
-@keyframes moonAppear{
-    from{
-        opacity:0;
-        transform:scale(.7);
-    }
-
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
-}
-
-/* =========================
-        ESTRELLAS
-========================= */
-
-.star{
-    position:absolute;
-    width:3px;
-    height:3px;
-    background:#fffbd5;
-    border-radius:50%;
-    box-shadow:0 0 6px #fffbd5;
-    animation:twinkle 2s infinite alternate;
-}
-
-@keyframes twinkle{
-    from{
-        opacity:.25;
-        transform:scale(.7);
-    }
-
-    to{
-        opacity:1;
-        transform:scale(1.4);
-    }
-}
-
-/* =========================
-        SUELO
-========================= */
-
-.ground{
-    position:absolute;
-    left:0;
-    right:0;
-    bottom:0;
-    height:125px;
-
-    background:
-        radial-gradient(ellipse at center,
-        rgba(40,90,42,.5),
-        transparent 65%),
-        linear-gradient(to top,
-        #020805,
-        transparent);
+    opacity:.95;
 
     z-index:1;
 }
 
-/* =========================
-        RAMO
-========================= */
+/* =========================================
+              NUBES
+========================================= */
 
-.bouquet{
-    position:absolute;
-    left:50%;
-    bottom:55px;
+.cloud{
+    position:fixed;
 
-    width:380px;
-    height:540px;
+    width:260px;
+    height:65px;
 
-    transform:translateX(-50%);
-    z-index:5;
+    border-radius:100px;
+
+    background:rgba(255,255,255,.35);
+
+    filter:blur(10px);
+
+    z-index:1;
+
+    opacity:.55;
 }
 
-/* =========================
-        TALLOS
-========================= */
-
-.stem{
-    position:absolute;
-    left:50%;
-    bottom:0;
-
-    width:8px;
-    height:0;
-
-    border-radius:20px;
-
-    background:
-        linear-gradient(to right,
-        #102f19,
-        #4c8c3d,
-        #1d5227);
-
-    transform-origin:bottom;
-
-    animation:growStem 2.5s ease-out 1s forwards;
-}
-
-.stem.s1{
-    transform:translateX(-50%) rotate(-13deg);
-}
-
-.stem.s2{
-    transform:translateX(-50%) rotate(-7deg);
-}
-
-.stem.s3{
-    transform:translateX(-50%) rotate(-3deg);
-}
-
-.stem.s4{
-    transform:translateX(-50%) rotate(3deg);
-}
-
-.stem.s5{
-    transform:translateX(-50%) rotate(8deg);
-}
-
-.stem.s6{
-    transform:translateX(-50%) rotate(14deg);
-}
-
-@keyframes growStem{
-    from{
-        height:0;
-    }
-
-    to{
-        height:365px;
-    }
-}
-
-/* =========================
-        HOJAS
-========================= */
-
-.leaf{
-    position:absolute;
-
-    width:115px;
-    height:42px;
-
-    background:
-        linear-gradient(135deg,
-        #12351b,
-        #3f7837 55%,
-        #6ba451);
-
-    border-radius:100% 0 100% 0;
-
-    opacity:0;
-
-    box-shadow:
-        inset 0 0 8px rgba(255,255,255,.08);
-}
-
-.leaf1{
-    left:45px;
-    bottom:155px;
-    transform:rotate(-32deg) scale(0);
-    animation:leafAppear 1s ease-out 3s forwards;
-}
-
-.leaf2{
-    right:42px;
-    bottom:190px;
-    transform:rotate(25deg) scale(0);
-    animation:leafAppear 1s ease-out 3.3s forwards;
-}
-
-.leaf3{
-    left:90px;
-    bottom:250px;
-    transform:rotate(-20deg) scale(0);
-    animation:leafAppear 1s ease-out 3.5s forwards;
-}
-
-.leaf4{
-    right:80px;
-    bottom:275px;
-    transform:rotate(22deg) scale(0);
-    animation:leafAppear 1s ease-out 3.7s forwards;
-}
-
-@keyframes leafAppear{
-    from{
-        opacity:0;
-        transform:scale(0) rotate(0deg);
-    }
-
-    to{
-        opacity:1;
-        transform:scale(1) rotate(var(--rotation));
-    }
-}
-
-/* =========================
-        LIRIOS
-========================= */
-
-.lily{
-    position:absolute;
-
-    width:125px;
-    height:125px;
-
-    transform:scale(0);
-
-    animation:lilyAppear 1.5s cubic-bezier(.2,1.5,.5,1) forwards;
-}
-
-/* posiciones */
-
-.lily1{
-    left:22px;
-    top:65px;
-    transform:rotate(-17deg) scale(0);
-    animation-delay:4s;
-}
-
-.lily2{
-    left:125px;
-    top:20px;
-    transform:rotate(-5deg) scale(0);
-    animation-delay:4.25s;
-}
-
-.lily3{
-    right:15px;
-    top:65px;
-    transform:rotate(17deg) scale(0);
-    animation-delay:4.5s;
-}
-
-.lily4{
-    left:65px;
-    top:115px;
-    transform:rotate(-9deg) scale(0);
-    animation-delay:4.75s;
-}
-
-.lily5{
-    left:155px;
-    top:120px;
-    transform:rotate(11deg) scale(0);
-    animation-delay:5s;
-}
-
-.lily6{
-    left:128px;
-    top:-20px;
-    transform:rotate(4deg) scale(0);
-    animation-delay:5.25s;
-}
-
-@keyframes lilyAppear{
-
-    0%{
-        opacity:0;
-        transform:scale(0) rotate(0deg);
-    }
-
-    70%{
-        opacity:1;
-        transform:scale(1.08) rotate(var(--rotation));
-    }
-
-    100%{
-        opacity:1;
-        transform:scale(1) rotate(var(--rotation));
-    }
-}
-
-/* =========================
-        PÉTALOS DEL LIRIO
-========================= */
-
-.lily-petal{
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    width:48px;
-    height:88px;
-
-    margin-left:-24px;
-    margin-top:-88px;
-
-    border-radius:
-        65% 65%
-        42% 42%;
-
-    transform-origin:50% 100%;
-
-    background:
-        linear-gradient(
-            to top,
-            #e6aa18 0%,
-            #f6d75b 20%,
-            #fff1ad 48%,
-            #fffdf0 78%,
-            #ffffff 100%
-        );
-
-    box-shadow:
-        inset 0 0 9px rgba(255,255,255,.35),
-        0 0 8px rgba(255,220,80,.12);
-}
-
-/* ondulación visual del lirio */
-
-.lily-petal:nth-child(1){
-    transform:rotate(0deg);
-}
-
-.lily-petal:nth-child(2){
-    transform:rotate(60deg);
-}
-
-.lily-petal:nth-child(3){
-    transform:rotate(120deg);
-}
-
-.lily-petal:nth-child(4){
-    transform:rotate(180deg);
-}
-
-.lily-petal:nth-child(5){
-    transform:rotate(240deg);
-}
-
-.lily-petal:nth-child(6){
-    transform:rotate(300deg);
-}
-
-/* =========================
-        CENTRO DEL LIRIO
-========================= */
-
-.lily-center{
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    width:32px;
-    height:32px;
-
-    transform:translate(-50%,-50%);
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(circle,
-        #fff4a0 0%,
-        #e6ae22 38%,
-        #9c6510 75%,
-        #5b3508 100%);
-
-    box-shadow:
-        0 0 12px rgba(255,205,50,.35);
-}
-
-/* =========================
-        ESTAMBRES
-========================= */
-
-.stamen{
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    width:3px;
-    height:38px;
-
-    background:#9a650d;
-
-    transform-origin:bottom center;
-    border-radius:5px;
-}
-
-.stamen::after{
+.cloud::before,
+.cloud::after{
     content:"";
 
     position:absolute;
 
-    top:-5px;
-    left:-2px;
-
-    width:7px;
-    height:7px;
+    background:inherit;
 
     border-radius:50%;
-
-    background:#dca82a;
-
-    box-shadow:0 0 5px rgba(255,220,70,.5);
 }
 
-.stamen:nth-child(8){
-    transform:translate(-50%,-100%) rotate(-18deg);
+.cloud::before{
+    width:110px;
+    height:110px;
+
+    left:40px;
+    bottom:0;
 }
 
-.stamen:nth-child(9){
-    transform:translate(-50%,-100%) rotate(18deg);
+.cloud::after{
+    width:85px;
+    height:85px;
+
+    right:45px;
+    bottom:0;
 }
 
-.stamen:nth-child(10){
-    transform:translate(-50%,-100%) rotate(0deg);
+.cloud1{
+    top:18%;
+    left:-40px;
 }
 
-/* =========================
-        PÉTALOS QUE CAEN
-========================= */
+.cloud2{
+    top:27%;
+    right:-100px;
 
-.falling-petal{
-    position:absolute;
-
-    width:13px;
-    height:25px;
-
-    border-radius:70% 30% 70% 30%;
-
-    background:
-        linear-gradient(
-            135deg,
-            #fffbdc,
-            #f7d63e,
-            #e5a814
-        );
-
-    opacity:0;
-
-    z-index:4;
-
-    animation:
-        fallPetal
-        linear
-        infinite;
+    transform:scale(.8);
 }
 
-@keyframes fallPetal{
+.cloud3{
+    top:11%;
+    left:42%;
 
-    0%{
-        opacity:0;
-        transform:
-            translateY(-20px)
-            translateX(0)
-            rotate(0deg);
-    }
+    transform:scale(.55);
 
-    10%{
-        opacity:.9;
-    }
-
-    90%{
-        opacity:.75;
-    }
-
-    100%{
-        opacity:0;
-        transform:
-            translateY(110vh)
-            translateX(var(--drift))
-            rotate(520deg);
-    }
+    opacity:.3;
 }
 
-/* =========================
-        MENSAJE
-========================= */
+/* =========================================
+              MENSAJE
+========================================= */
 
 .message{
-    position:absolute;
+    position:fixed;
 
     left:50%;
-    bottom:4.5%;
+    bottom:7%;
 
     width:100%;
 
-    transform:translateX(-50%);
+    transform:
+        translateX(-50%)
+        translateY(20px);
 
     text-align:center;
 
-    z-index:10;
+    z-index:20;
 
     opacity:0;
 
-    animation:messageAppear 2s ease-out 6.5s forwards;
+    animation:
+        messageAppear
+        2.5s
+        ease-out
+        9s
+        forwards;
+
+    pointer-events:none;
+
+    text-shadow:
+        0 2px 8px rgba(0,0,0,.35),
+        0 0 20px rgba(255,255,220,.35);
 }
 
-.message .love{
+.love{
     display:block;
 
     font-family:'Great Vibes',cursive;
 
-    font-size:clamp(52px,10vw,82px);
+    font-size:
+        clamp(60px,12vw,105px);
 
-    line-height:1;
+    color:#fff9ce;
 
-    color:#fff4b0;
-
-    text-shadow:
-        0 0 10px rgba(255,235,130,.35),
-        0 0 25px rgba(255,215,80,.2);
+    line-height:.95;
 }
 
-.message .flowers{
+.flowers{
     display:block;
 
     margin-top:8px;
 
     font-family:'Cormorant Garamond',serif;
 
-    font-size:clamp(25px,5vw,38px);
+    font-size:
+        clamp(24px,5vw,40px);
 
-    letter-spacing:2px;
+    letter-spacing:3px;
 
-    color:#fffbe4;
+    color:#fffef0;
 }
 
 @keyframes messageAppear{
+
     from{
         opacity:0;
-        transform:translate(-50%,15px);
+
+        transform:
+            translateX(-50%)
+            translateY(25px);
     }
 
     to{
         opacity:1;
-        transform:translate(-50%,0);
+
+        transform:
+            translateX(-50%)
+            translateY(0);
     }
 }
 
-/* =========================
-        RESPONSIVE
-========================= */
+/* =========================================
+              VIÑETA
+========================================= */
+
+.vignette{
+    position:fixed;
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:10;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 40%,
+            rgba(0,20,5,.08) 65%,
+            rgba(0,15,5,.35) 100%
+        );
+}
+
+/* =========================================
+              MÓVIL
+========================================= */
 
 @media(max-width:600px){
 
-    .moon{
-        width:90px;
-        height:90px;
-        top:7%;
+    .sun{
+        width:95px;
+        height:95px;
+
+        top:10%;
         right:8%;
     }
 
-    .bouquet{
-        transform:
-            translateX(-50%)
-            scale(.78);
-
-        transform-origin:
-            bottom center;
-
-        bottom:65px;
-    }
-
     .message{
-        bottom:4%;
+        bottom:7%;
     }
 
-    .message .love{
-        font-size:54px;
+    .love{
+        font-size:60px;
     }
 
-    .message .flowers{
-        font-size:24px;
-    }
-}
-
-@media(max-height:700px){
-
-    .bouquet{
-        transform:
-            translateX(-50%)
-            scale(.64);
-
-        bottom:20px;
+    .flowers{
+        font-size:25px;
+        letter-spacing:1.5px;
     }
 
-    .message{
-        bottom:2%;
-    }
 }
 
 </style>
@@ -653,214 +318,1092 @@ body{
 
 <body>
 
-<div class="moon"></div>
+<canvas id="garden"></canvas>
 
-<div class="ground"></div>
+<div class="sun"></div>
 
-<div class="bouquet">
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+<div class="cloud cloud3"></div>
 
-    <!-- TALLOS -->
+<div class="atmosphere"></div>
 
-    <div class="stem s1"></div>
-    <div class="stem s2"></div>
-    <div class="stem s3"></div>
-    <div class="stem s4"></div>
-    <div class="stem s5"></div>
-    <div class="stem s6"></div>
-
-    <!-- HOJAS -->
-
-    <div class="leaf leaf1" style="--rotation:-32deg;"></div>
-    <div class="leaf leaf2" style="--rotation:25deg;"></div>
-    <div class="leaf leaf3" style="--rotation:-20deg;"></div>
-    <div class="leaf leaf4" style="--rotation:22deg;"></div>
-
-
-    <!-- LIRIO 1 -->
-
-    <div class="lily lily1" style="--rotation:-17deg;">
-
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-
-        <div class="lily-center"></div>
-
-        <div class="stamen"></div>
-        <div class="stamen"></div>
-        <div class="stamen"></div>
-
-    </div>
-
-
-    <!-- LIRIO 2 -->
-
-    <div class="lily lily2" style="--rotation:-5deg;">
-
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-
-        <div class="lily-center"></div>
-
-        <div class="stamen"></div>
-        <div class="stamen"></div>
-        <div class="stamen"></div>
-
-    </div>
-
-
-    <!-- LIRIO 3 -->
-
-    <div class="lily lily3" style="--rotation:17deg;">
-
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-
-        <div class="lily-center"></div>
-
-        <div class="stamen"></div>
-        <div class="stamen"></div>
-        <div class="stamen"></div>
-
-    </div>
-
-
-    <!-- LIRIO 4 -->
-
-    <div class="lily lily4" style="--rotation:-9deg;">
-
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-
-        <div class="lily-center"></div>
-
-        <div class="stamen"></div>
-        <div class="stamen"></div>
-        <div class="stamen"></div>
-
-    </div>
-
-
-    <!-- LIRIO 5 -->
-
-    <div class="lily lily5" style="--rotation:11deg;">
-
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-
-        <div class="lily-center"></div>
-
-        <div class="stamen"></div>
-        <div class="stamen"></div>
-        <div class="stamen"></div>
-
-    </div>
-
-
-    <!-- LIRIO 6 -->
-
-    <div class="lily lily6" style="--rotation:4deg;">
-
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-
-        <div class="lily-center"></div>
-
-        <div class="stamen"></div>
-        <div class="stamen"></div>
-        <div class="stamen"></div>
-
-    </div>
-
-</div>
-
+<div class="vignette"></div>
 
 <div class="message">
-    <span class="love">Te amo</span>
-    <span class="flowers">Flores amarillas para ti 🌼</span>
+
+    <span class="love">
+        Te amo
+    </span>
+
+    <span class="flowers">
+        Flores amarillas para ti 🌷
+    </span>
+
 </div>
 
 
 <script>
 
-/* =========================
-        ESTRELLAS
-========================= */
+/* =====================================================
+        CAMPO INFINITO DE TULIPANES
+===================================================== */
 
-for(let i=0;i<45;i++){
+const canvas = document.getElementById("garden");
+const ctx = canvas.getContext("2d");
 
-    const star=document.createElement("div");
+let width = 0;
+let height = 0;
 
-    star.className="star";
+let tulips = [];
 
-    star.style.left=Math.random()*100+"%";
-    star.style.top=Math.random()*65+"%";
+let cameraZ = 0;
 
-    star.style.animationDelay=
-        (Math.random()*3)+"s";
+let lastTime = performance.now();
 
-    star.style.opacity=
-        Math.random();
-
-    document.body.appendChild(star);
-}
+let wind = 0;
 
 
-/* =========================
-        PÉTALOS
-========================= */
+/* =====================================================
+        CONFIGURACIÓN
+===================================================== */
 
-for(let i=0;i<20;i++){
+const CONFIG = {
 
-    const petal=document.createElement("div");
+    /* cantidad de flores */
+    flowers: 850,
 
-    petal.className="falling-petal";
+    /* velocidad de avance */
+    speed: 0.000085,
 
-    petal.style.left=
-        Math.random()*100+"%";
+    /* profundidad del mundo */
+    depth: 1,
 
-    petal.style.top=
-        (-10-Math.random()*20)+"%";
+    /* ancho del campo */
+    fieldWidth: 22,
 
-    petal.style.animationDuration=
-        (7+Math.random()*8)+"s";
+    /* cantidad de pétalos */
+    petals: 6
 
-    petal.style.animationDelay=
-        (5+Math.random()*12)+"s";
+};
 
-    petal.style.setProperty(
-        "--drift",
-        ((Math.random()-.5)*160)+"px"
+
+/* =====================================================
+        REDIMENSIONAR
+===================================================== */
+
+function resize(){
+
+    const dpr =
+        Math.min(window.devicePixelRatio || 1,2);
+
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+
+    canvas.style.width = width + "px";
+    canvas.style.height = height + "px";
+
+    ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
     );
 
-    petal.style.transform=
-        `rotate(${Math.random()*360}deg)`;
-
-    document.body.appendChild(petal);
 }
+
+window.addEventListener(
+    "resize",
+    resize
+);
+
+resize();
+
+
+/* =====================================================
+        CREAR TULIPANES
+===================================================== */
+
+function createTulip(){
+
+    return {
+
+        /*
+         x = posición horizontal
+         y = posición lateral/altura
+         z = profundidad
+        */
+
+        x:
+            (Math.random() - .5)
+            * CONFIG.fieldWidth,
+
+        y:
+            Math.random() * .8
+            + .1,
+
+        z:
+            Math.random() * CONFIG.depth,
+
+        size:
+            .55 +
+            Math.random() * .85,
+
+        sway:
+            Math.random() * Math.PI * 2,
+
+        swaySpeed:
+            .5 +
+            Math.random() * 1.5,
+
+        lean:
+            (Math.random() - .5) * .15,
+
+        brightness:
+            .75 +
+            Math.random() * .3,
+
+        /* pequeñas variaciones de amarillo */
+        yellow:
+            45 +
+            Math.random() * 25
+
+    };
+
+}
+
+
+/* =====================================================
+        GENERAR MUCHÍSIMOS TULIPANES
+===================================================== */
+
+for(
+    let i = 0;
+    i < CONFIG.flowers;
+    i++
+){
+
+    tulips.push(
+        createTulip()
+    );
+
+}
+
+
+/* =====================================================
+        PROYECCIÓN 3D
+===================================================== */
+
+function project(tulip){
+
+    let z =
+        tulip.z -
+        cameraZ;
+
+    /*
+      Cuando una flor queda detrás,
+      reaparece al fondo.
+    */
+
+    while(z < 0.02){
+
+        tulip.z += CONFIG.depth;
+
+        z =
+            tulip.z -
+            cameraZ;
+    }
+
+    const perspective =
+        1 / z;
+
+    const horizon =
+        height * .43;
+
+    const x =
+        width / 2 +
+        tulip.x *
+        perspective *
+        width *
+        .035;
+
+    const groundY =
+        horizon +
+        perspective *
+        height *
+        .30;
+
+    const size =
+        tulip.size *
+        perspective *
+        30;
+
+    return {
+
+        x,
+        groundY,
+        size,
+        z,
+        perspective
+    };
+
+}
+
+
+/* =====================================================
+        DIBUJAR TALLO
+===================================================== */
+
+function drawStem(
+    x,
+    groundY,
+    size,
+    sway
+){
+
+    const stemHeight =
+        size * 4.7;
+
+    const curve =
+        Math.sin(
+            wind * .0015 +
+            sway
+        ) * size * .55;
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        x,
+        groundY
+    );
+
+    ctx.quadraticCurveTo(
+
+        x + curve * .35,
+        groundY - stemHeight * .55,
+
+        x + curve,
+        groundY - stemHeight
+
+    );
+
+    ctx.lineWidth =
+        Math.max(1,size*.12);
+
+    ctx.strokeStyle =
+        "#397438";
+
+    ctx.stroke();
+
+}
+
+
+/* =====================================================
+        DIBUJAR HOJAS
+===================================================== */
+
+function drawLeaf(
+    x,
+    y,
+    size,
+    direction
+){
+
+    ctx.save();
+
+    ctx.translate(
+        x,
+        y
+    );
+
+    ctx.rotate(
+        direction
+    );
+
+    ctx.beginPath();
+
+    ctx.moveTo(0,0);
+
+    ctx.quadraticCurveTo(
+        size*.9,
+        -size*.35,
+        size*1.25,
+        -size*.05
+    );
+
+    ctx.quadraticCurveTo(
+        size*.7,
+        size*.05,
+        0,
+        0
+    );
+
+    const gradient =
+        ctx.createLinearGradient(
+            0,
+            0,
+            size,
+            0
+        );
+
+    gradient.addColorStop(
+        0,
+        "#244f28"
+    );
+
+    gradient.addColorStop(
+        .6,
+        "#4e8a3d"
+    );
+
+    gradient.addColorStop(
+        1,
+        "#79a955"
+    );
+
+    ctx.fillStyle = gradient;
+
+    ctx.fill();
+
+    ctx.restore();
+
+}
+
+
+/* =====================================================
+        DIBUJAR TULIPÁN
+===================================================== */
+
+function drawTulip(
+    tulip,
+    projection
+){
+
+    const {
+        x,
+        groundY,
+        size
+    } = projection;
+
+    /*
+      Si está demasiado lejos,
+      lo hacemos muy pequeño.
+    */
+
+    if(size < .5){
+
+        return;
+    }
+
+    const sway =
+        Math.sin(
+            wind *
+            .001 *
+            tulip.swaySpeed +
+            tulip.sway
+        );
+
+    const stemX =
+        x +
+        sway *
+        size *
+        .08;
+
+    const stemTop =
+        groundY -
+        size *
+        4.7;
+
+
+    /* TALLO */
+
+    drawStem(
+        x,
+        groundY,
+        size,
+        tulip.sway
+    );
+
+
+    /* HOJA IZQUIERDA */
+
+    drawLeaf(
+        x -
+        size*.05,
+        groundY -
+        size*1.8,
+
+        size*.95,
+
+        -1.9 +
+        sway*.12
+    );
+
+
+    /* HOJA DERECHA */
+
+    drawLeaf(
+        x +
+        size*.05,
+        groundY -
+        size*2.3,
+
+        size*.8,
+
+        -.55 +
+        sway*.12
+    );
+
+
+    /*
+      CABEZA DEL TULIPÁN
+    */
+
+    const flowerX =
+        stemX;
+
+    const flowerY =
+        stemTop;
+
+
+    const flowerWidth =
+        size * 1.65;
+
+    const flowerHeight =
+        size * 2.0;
+
+
+    ctx.save();
+
+    ctx.translate(
+        flowerX,
+        flowerY
+    );
+
+    ctx.rotate(
+        tulip.lean +
+        sway*.035
+    );
+
+
+    /*
+      Resplandor muy suave
+      en las flores cercanas
+    */
+
+    if(size > 12){
+
+        ctx.shadowColor =
+            "rgba(255,220,60,.22)";
+
+        ctx.shadowBlur =
+            size*.5;
+    }
+
+
+    /*
+      PÉTALO IZQUIERDO
+    */
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        0,
+        flowerHeight*.35
+    );
+
+    ctx.bezierCurveTo(
+        -flowerWidth*.9,
+        flowerHeight*.05,
+        -flowerWidth*.65,
+        -flowerHeight*.7,
+        -flowerWidth*.15,
+        -flowerHeight*.82
+    );
+
+    ctx.bezierCurveTo(
+        -flowerWidth*.05,
+        -flowerHeight*.25,
+        flowerWidth*.05,
+        flowerHeight*.1,
+        0,
+        flowerHeight*.35
+    );
+
+    const leftGradient =
+        ctx.createLinearGradient(
+            0,
+            -flowerHeight,
+            0,
+            flowerHeight
+        );
+
+    leftGradient.addColorStop(
+        0,
+        "#fffbd1"
+    );
+
+    leftGradient.addColorStop(
+        .45,
+        "#ffe94c"
+    );
+
+    leftGradient.addColorStop(
+        1,
+        "#dca800"
+    );
+
+    ctx.fillStyle =
+        leftGradient;
+
+    ctx.fill();
+
+
+    /*
+      PÉTALO CENTRAL
+    */
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        0,
+        flowerHeight*.4
+    );
+
+    ctx.bezierCurveTo(
+        -flowerWidth*.35,
+        flowerHeight*.05,
+        -flowerWidth*.32,
+        -flowerHeight*.85,
+        0,
+        -flowerHeight
+    );
+
+    ctx.bezierCurveTo(
+        flowerWidth*.32,
+        -flowerHeight*.85,
+        flowerWidth*.35,
+        flowerHeight*.05,
+        0,
+        flowerHeight*.4
+    );
+
+    const centerGradient =
+        ctx.createLinearGradient(
+            0,
+            -flowerHeight,
+            0,
+            flowerHeight
+        );
+
+    centerGradient.addColorStop(
+        0,
+        "#fffef0"
+    );
+
+    centerGradient.addColorStop(
+        .35,
+        "#fff06b"
+    );
+
+    centerGradient.addColorStop(
+        .8,
+        "#f5c51e"
+    );
+
+    centerGradient.addColorStop(
+        1,
+        "#c88e00"
+    );
+
+    ctx.fillStyle =
+        centerGradient;
+
+    ctx.fill();
+
+
+    /*
+      PÉTALO DERECHO
+    */
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        0,
+        flowerHeight*.35
+    );
+
+    ctx.bezierCurveTo(
+        flowerWidth*.9,
+        flowerHeight*.05,
+        flowerWidth*.65,
+        -flowerHeight*.7,
+        flowerWidth*.15,
+        -flowerHeight*.82
+    );
+
+    ctx.bezierCurveTo(
+        flowerWidth*.05,
+        -flowerHeight*.25,
+        -flowerWidth*.05,
+        flowerHeight*.1,
+        0,
+        flowerHeight*.35
+    );
+
+    const rightGradient =
+        ctx.createLinearGradient(
+            0,
+            -flowerHeight,
+            0,
+            flowerHeight
+        );
+
+    rightGradient.addColorStop(
+        0,
+        "#fffbd0"
+    );
+
+    rightGradient.addColorStop(
+        .45,
+        "#ffea43"
+    );
+
+    rightGradient.addColorStop(
+        1,
+        "#dda700"
+    );
+
+    ctx.fillStyle =
+        rightGradient;
+
+    ctx.fill();
+
+
+    /*
+      PEQUEÑO DETALLE CENTRAL
+    */
+
+    if(size > 10){
+
+        ctx.beginPath();
+
+        ctx.ellipse(
+            0,
+            flowerHeight*.25,
+            size*.15,
+            size*.08,
+            0,
+            0,
+            Math.PI*2
+        );
+
+        ctx.fillStyle =
+            "#d49a05";
+
+        ctx.fill();
+    }
+
+
+    ctx.restore();
+
+}
+
+
+/* =====================================================
+        ORDENAR POR PROFUNDIDAD
+===================================================== */
+
+function sortFlowers(){
+
+    tulips.sort(
+        (a,b)=>
+            (b.z-cameraZ) -
+            (a.z-cameraZ)
+    );
+
+}
+
+
+/* =====================================================
+        PÉTALOS FLOTANDO
+===================================================== */
+
+const floatingPetals = [];
+
+for(
+    let i=0;
+    i<45;
+    i++
+){
+
+    floatingPetals.push({
+
+        x:
+            Math.random()*width,
+
+        y:
+            Math.random()*height,
+
+        speed:
+            .15+
+            Math.random()*.45,
+
+        size:
+            2+
+            Math.random()*4,
+
+        angle:
+            Math.random()*Math.PI*2,
+
+        drift:
+            .2+
+            Math.random()*.8
+
+    });
+
+}
+
+
+function drawFloatingPetals(){
+
+    for(
+        const p of floatingPetals
+    ){
+
+        p.y += p.speed;
+
+        p.x +=
+            Math.sin(
+                wind*.001+
+                p.angle
+            )*
+            p.drift;
+
+        if(
+            p.y >
+            height+20
+        ){
+
+            p.y=-20;
+
+            p.x=
+                Math.random()*
+                width;
+        }
+
+        ctx.save();
+
+        ctx.translate(
+            p.x,
+            p.y
+        );
+
+        ctx.rotate(
+            p.angle+
+            wind*.001
+        );
+
+        ctx.beginPath();
+
+        ctx.ellipse(
+            0,
+            0,
+            p.size,
+            p.size*1.8,
+            0,
+            0,
+            Math.PI*2
+        );
+
+        ctx.fillStyle =
+            "rgba(255,231,75,.65)";
+
+        ctx.fill();
+
+        ctx.restore();
+
+    }
+
+}
+
+
+/* =====================================================
+        HORIZONTE
+===================================================== */
+
+function drawHorizon(){
+
+    const horizon =
+        height*.43;
+
+    /*
+      Montañas/árboles lejanos
+    */
+
+    ctx.fillStyle =
+        "rgba(40,73,42,.42)";
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        0,
+        horizon+35
+    );
+
+    for(
+        let x=0;
+        x<=width;
+        x+=35
+    ){
+
+        const y =
+            horizon+
+            25+
+            Math.sin(x*.012)*12+
+            Math.sin(x*.035)*7;
+
+        ctx.lineTo(
+            x,
+            y
+        );
+
+    }
+
+    ctx.lineTo(
+        width,
+        height
+    );
+
+    ctx.lineTo(
+        0,
+        height
+    );
+
+    ctx.closePath();
+
+    ctx.fill();
+
+
+    /*
+      Camino central
+    */
+
+    const center =
+        width/2;
+
+    const pathTop =
+        center;
+
+    const pathBottom =
+        width*.95;
+
+    const gradient =
+        ctx.createLinearGradient(
+            0,
+            horizon,
+            0,
+            height
+        );
+
+    gradient.addColorStop(
+        0,
+        "rgba(202,184,126,.18)"
+    );
+
+    gradient.addColorStop(
+        1,
+        "rgba(173,145,82,.42)"
+    );
+
+    ctx.fillStyle =
+        gradient;
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        center-12,
+        horizon
+    );
+
+    ctx.lineTo(
+        center+12,
+        horizon
+    );
+
+    ctx.lineTo(
+        center+
+        pathBottom/2,
+        height
+    );
+
+    ctx.lineTo(
+        center-
+        pathBottom/2,
+        height
+    );
+
+    ctx.closePath();
+
+    ctx.fill();
+
+}
+
+
+/* =====================================================
+        ANIMACIÓN PRINCIPAL
+===================================================== */
+
+function animate(now){
+
+    const delta =
+        Math.min(
+            now-lastTime,
+            40
+        );
+
+    lastTime =
+        now;
+
+    wind += delta;
+
+    /*
+      Avance constante.
+    */
+
+    cameraZ +=
+        delta *
+        CONFIG.speed;
+
+
+    /*
+      Cuando llegamos al final
+      reiniciamos la profundidad.
+      El ojo no debería notarlo.
+    */
+
+    if(
+        cameraZ >
+        CONFIG.depth
+    ){
+
+        cameraZ -=
+            CONFIG.depth;
+    }
+
+
+    /* limpiar */
+
+    ctx.clearRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+
+    /*
+      Cielo
+    */
+
+    const sky =
+        ctx.createLinearGradient(
+            0,
+            0,
+            0,
+            height
+        );
+
+    sky.addColorStop(
+        0,
+        "#a7c9d8"
+    );
+
+    sky.addColorStop(
+        .38,
+        "#dce8df"
+    );
+
+    sky.addColorStop(
+        .55,
+        "#91aa68"
+    );
+
+    sky.addColorStop(
+        1,
+        "#24451e"
+    );
+
+    ctx.fillStyle =
+        sky;
+
+    ctx.fillRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+
+    /*
+      Horizonte
+    */
+
+    drawHorizon();
+
+
+    /*
+      Ordenar las flores.
+    */
+
+    sortFlowers();
+
+
+    /*
+      Dibujar tulipanes.
+    */
+
+    for(
+        const tulip of tulips
+    ){
+
+        const projection =
+            project(tulip);
+
+        drawTulip(
+            tulip,
+            projection
+        );
+
+    }
+
+
+    /*
+      Pétalos flotando.
+    */
+
+    drawFloatingPetals();
+
+
+    requestAnimationFrame(
+        animate
+    );
+
+}
+
+
+/* =====================================================
+        INICIAR
+===================================================== */
+
+requestAnimationFrame(
+    animate
+);
 
 </script>
 

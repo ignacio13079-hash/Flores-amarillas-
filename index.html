@@ -4,24 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Flores amarillas para ti 🌷</title>
+<title>Flores amarillas para ti 🌼</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
-
-/* =====================================================
-   BASE
-===================================================== */
 
 *{
     box-sizing:border-box;
 }
 
-html,
-body{
+html,body{
     margin:0;
     width:100%;
     height:100%;
@@ -29,598 +25,636 @@ body{
 }
 
 body{
-    background:#7fa05b;
+    background:
+        radial-gradient(circle at 50% 48%,rgba(45,85,45,.22),transparent 35%),
+        linear-gradient(to bottom,#020806 0%,#06120d 55%,#0b1c12 100%);
     font-family:'Cormorant Garamond',serif;
+    color:white;
 }
 
 
-/* =====================================================
-   CIELO
-===================================================== */
+/* =========================
+        LUNA
+========================= */
 
-.sky{
-    position:fixed;
-    inset:0;
+.moon{
+    position:absolute;
+    width:125px;
+    height:125px;
+    top:8%;
+    right:12%;
+    border-radius:50%;
 
     background:
-        linear-gradient(
-            to bottom,
-            #8db7ca 0%,
-            #b9d3d2 30%,
-            #e5e7ca 46%,
-            #8ba45e 58%,
-            #385c2d 100%
-        );
+        radial-gradient(circle at 35% 35%,
+        #fffef0 0%,
+        #fff9c9 45%,
+        #f4e9a4 75%,
+        #d8cc88 100%);
 
-    z-index:0;
+    box-shadow:
+        0 0 30px rgba(255,248,190,.35),
+        0 0 80px rgba(255,245,180,.12);
+
+    opacity:0;
+    animation:moonAppear 2s ease-out 1s forwards;
+}
+
+@keyframes moonAppear{
+    from{
+        opacity:0;
+        transform:scale(.7);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
 }
 
 
-/* =====================================================
-   SOL
-===================================================== */
+/* =========================
+        ESTRELLAS
+========================= */
 
-.sun{
+.star{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:#fffbd5;
+    border-radius:50%;
+    box-shadow:0 0 6px #fffbd5;
+    animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{
+        opacity:.25;
+        transform:scale(.7);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1.4);
+    }
+}
+
+
+/* =========================
+        SUELO
+========================= */
+
+.ground{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:125px;
+
+    background:
+        radial-gradient(ellipse at center,
+        rgba(40,90,42,.5),
+        transparent 65%),
+        linear-gradient(to top,
+        #020805,
+        transparent);
+
+    z-index:1;
+}
+
+
+/* =========================
+        RAMO
+========================= */
+
+.bouquet{
+    position:absolute;
+    left:50%;
+    bottom:55px;
+
+    width:380px;
+    height:540px;
+
+    transform:translateX(-50%);
+    z-index:5;
+}
+
+
+/* =========================
+        TALLOS
+========================= */
+
+.stem{
+    position:absolute;
+    left:50%;
+    bottom:0;
+
+    width:8px;
+    height:0;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(to right,
+        #102f19,
+        #4c8c3d,
+        #1d5227);
+
+    transform-origin:bottom;
+
+    animation:growStem 2.5s ease-out 1s forwards;
+}
+
+.stem.s1{
+    transform:translateX(-50%) rotate(-13deg);
+}
+
+.stem.s2{
+    transform:translateX(-50%) rotate(-7deg);
+}
+
+.stem.s3{
+    transform:translateX(-50%) rotate(-3deg);
+}
+
+.stem.s4{
+    transform:translateX(-50%) rotate(3deg);
+}
+
+.stem.s5{
+    transform:translateX(-50%) rotate(8deg);
+}
+
+.stem.s6{
+    transform:translateX(-50%) rotate(14deg);
+}
+
+@keyframes growStem{
+    from{
+        height:0;
+    }
+
+    to{
+        height:365px;
+    }
+}
+
+
+/* =========================
+        HOJAS
+========================= */
+
+.leaf{
+    position:absolute;
+
+    width:115px;
+    height:42px;
+
+    background:
+        linear-gradient(135deg,
+        #12351b,
+        #3f7837 55%,
+        #6ba451);
+
+    border-radius:100% 0 100% 0;
+
+    opacity:0;
+
+    box-shadow:
+        inset 0 0 8px rgba(255,255,255,.08);
+}
+
+.leaf1{
+    left:45px;
+    bottom:155px;
+    transform:rotate(-32deg) scale(0);
+    animation:leafAppear 1s ease-out 3s forwards;
+}
+
+.leaf2{
+    right:42px;
+    bottom:190px;
+    transform:rotate(25deg) scale(0);
+    animation:leafAppear 1s ease-out 3.3s forwards;
+}
+
+.leaf3{
+    left:90px;
+    bottom:250px;
+    transform:rotate(-20deg) scale(0);
+    animation:leafAppear 1s ease-out 3.5s forwards;
+}
+
+.leaf4{
+    right:80px;
+    bottom:275px;
+    transform:rotate(22deg) scale(0);
+    animation:leafAppear 1s ease-out 3.7s forwards;
+}
+
+@keyframes leafAppear{
+
+    from{
+        opacity:0;
+        transform:scale(0);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+
+/* =========================
+        LIRIOS
+========================= */
+
+.lily{
     position:absolute;
 
     width:125px;
     height:125px;
 
-    right:11%;
-    top:9%;
+    transform:scale(0);
 
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            #fffde6 0%,
-            #fff5a8 48%,
-            #f2d56d 72%,
-            rgba(242,213,109,0) 100%
-        );
-
-    box-shadow:
-        0 0 35px rgba(255,239,160,.8),
-        0 0 100px rgba(255,225,110,.35);
-
-    z-index:1;
+    animation:lilyAppear 1.5s cubic-bezier(.2,1.5,.5,1) forwards;
 }
 
 
-/* =====================================================
-   NUBES
-===================================================== */
+/* posiciones */
 
-.cloud{
-    position:absolute;
-
-    width:260px;
-    height:55px;
-
-    border-radius:100px;
-
-    background:rgba(255,255,255,.28);
-
-    filter:blur(8px);
-
-    z-index:1;
+.lily1{
+    left:22px;
+    top:65px;
+    transform:rotate(-17deg) scale(0);
+    animation-delay:4s;
 }
 
-.cloud::before,
-.cloud::after{
-    content:"";
-
-    position:absolute;
-
-    border-radius:50%;
-
-    background:inherit;
+.lily2{
+    left:125px;
+    top:20px;
+    transform:rotate(-5deg) scale(0);
+    animation-delay:4.25s;
 }
 
-.cloud::before{
-    width:100px;
-    height:100px;
-
-    left:40px;
-    bottom:0;
+.lily3{
+    right:15px;
+    top:65px;
+    transform:rotate(17deg) scale(0);
+    animation-delay:4.5s;
 }
 
-.cloud::after{
-    width:80px;
-    height:80px;
-
-    right:40px;
-    bottom:0;
+.lily4{
+    left:65px;
+    top:115px;
+    transform:rotate(-9deg) scale(0);
+    animation-delay:4.75s;
 }
 
-.cloud.one{
-    left:-60px;
-    top:19%;
+.lily5{
+    left:155px;
+    top:120px;
+    transform:rotate(11deg) scale(0);
+    animation-delay:5s;
 }
 
-.cloud.two{
-    right:-100px;
-    top:27%;
-    transform:scale(.8);
-}
-
-.cloud.three{
-    left:35%;
-    top:12%;
-    transform:scale(.55);
-    opacity:.35;
+.lily6{
+    left:128px;
+    top:-20px;
+    transform:rotate(4deg) scale(0);
+    animation-delay:5.25s;
 }
 
 
-/* =====================================================
-   CAMPO
-===================================================== */
+@keyframes lilyAppear{
 
-.field{
-    position:absolute;
+    0%{
+        opacity:0;
+        transform:scale(0);
+    }
 
-    left:0;
-    right:0;
-    top:45%;
-    bottom:0;
+    70%{
+        opacity:1;
+        transform:scale(1.08);
+    }
 
-    overflow:hidden;
-
-    z-index:3;
-
-    perspective:700px;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #6e914a,
-            #436d31 55%,
-            #254b25 100%
-        );
+    100%{
+        opacity:1;
+        transform:scale(1);
+    }
 }
 
 
-/* =====================================================
-   HORIZONTE
-===================================================== */
-
-.horizon{
-    position:absolute;
-
-    left:0;
-    right:0;
-
-    top:43%;
-
-    height:13%;
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(49,81,42,.1),
-            rgba(35,69,32,.8)
-        );
-
-    z-index:2;
-}
-
-
-/* =====================================================
-   MUNDO DE TULIPANES
-===================================================== */
-
-.world{
-    position:absolute;
-
-    left:50%;
-    top:0;
-
-    width:100%;
-    height:100%;
-
-    transform:
-        translateX(-50%);
-
-    transform-style:preserve-3d;
-}
-
-
-/* =====================================================
-   TULIPÁN INDIVIDUAL
-===================================================== */
-
-.tulip{
-    position:absolute;
-
-    width:70px;
-    height:180px;
-
-    transform-origin:
-        50% 100%;
-
-    transform-style:preserve-3d;
-
-    pointer-events:none;
-}
-
-
-/* =====================================================
-   TALLO
-===================================================== */
-
-.stem{
-    position:absolute;
-
-    left:50%;
-    bottom:0;
-
-    width:7px;
-    height:125px;
-
-    transform:
-        translateX(-50%);
-
-    border-radius:10px;
-
-    background:
-        linear-gradient(
-            to right,
-            #214d26,
-            #579143,
-            #285b2d
-        );
-
-    box-shadow:
-        1px 0 2px rgba(0,0,0,.18);
-}
-
-
-/* =====================================================
-   HOJAS
-===================================================== */
-
-.leaf{
-    position:absolute;
-
-    width:58px;
-    height:25px;
-
-    bottom:38px;
-
-    border-radius:
-        100% 0 100% 0;
-
-    background:
-        linear-gradient(
-            135deg,
-            #1d4b25,
-            #4f8b3b,
-            #6c9d4a
-        );
-
-    transform-origin:
-        0 50%;
-}
-
-.leaf.left{
-    left:34px;
-    transform:rotate(-25deg);
-}
-
-.leaf.right{
-    left:33px;
-    bottom:65px;
-    transform:scaleX(-1) rotate(-20deg);
-}
-
-
-/* =====================================================
-   FLOR
-===================================================== */
-
-.flower{
-    position:absolute;
-
-    left:50%;
-    top:10px;
-
-    width:78px;
-    height:78px;
-
-    transform:
-        translateX(-50%);
-
-    filter:
-        drop-shadow(
-            0 5px 5px rgba(0,0,0,.12)
-        );
-}
-
-
-/* =====================================================
-   PÉTALOS DEL TULIPÁN
-===================================================== */
-
-.flower .petal{
-    position:absolute;
-
-    top:8px;
-
-    width:39px;
-    height:61px;
-
-    border-radius:
-        55% 55% 45% 45%;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #fffde0 0%,
-            #fff28a 22%,
-            #ffd82d 62%,
-            #e6a500 100%
-        );
-
-    box-shadow:
-        inset 0 0 5px rgba(255,255,255,.45);
-}
-
-
-/* pétalo izquierdo */
-
-.flower .petal:nth-child(1){
-    left:2px;
-
-    transform:
-        rotate(-20deg);
-}
-
-
-/* pétalo central */
-
-.flower .petal:nth-child(2){
-    left:19px;
-    top:2px;
-
-    height:67px;
-
-    z-index:3;
-}
-
-
-/* pétalo derecho */
-
-.flower .petal:nth-child(3){
-    right:2px;
-
-    transform:
-        rotate(20deg);
-}
-
-
-/* =====================================================
-   CENTRO DE LA FLOR
-===================================================== */
-
-.flower .center{
+/* =========================
+        PÉTALOS
+========================= */
+
+.lily-petal{
     position:absolute;
 
     left:50%;
     top:50%;
 
-    width:18px;
-    height:18px;
+    width:48px;
+    height:88px;
 
-    transform:
-        translate(-50%,-20%);
+    margin-left:-24px;
+    margin-top:-88px;
+
+    border-radius:
+        65% 65%
+        42% 42%;
+
+    transform-origin:50% 100%;
+
+    background:
+        linear-gradient(
+            to top,
+            #e6aa18 0%,
+            #f6d75b 20%,
+            #fff1ad 48%,
+            #fffdf0 78%,
+            #ffffff 100%
+        );
+
+    box-shadow:
+        inset 0 0 9px rgba(255,255,255,.35),
+        0 0 8px rgba(255,220,80,.12);
+}
+
+.lily-petal:nth-child(1){
+    transform:rotate(0deg);
+}
+
+.lily-petal:nth-child(2){
+    transform:rotate(60deg);
+}
+
+.lily-petal:nth-child(3){
+    transform:rotate(120deg);
+}
+
+.lily-petal:nth-child(4){
+    transform:rotate(180deg);
+}
+
+.lily-petal:nth-child(5){
+    transform:rotate(240deg);
+}
+
+.lily-petal:nth-child(6){
+    transform:rotate(300deg);
+}
+
+
+/* =========================
+        CENTRO
+========================= */
+
+.lily-center{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:32px;
+    height:32px;
+
+    transform:translate(-50%,-50%);
 
     border-radius:50%;
 
     background:
-        radial-gradient(
-            circle,
-            #fff3a0,
-            #e1a70a 55%,
-            #98620b
-        );
+        radial-gradient(circle,
+        #fff4a0 0%,
+        #e6ae22 38%,
+        #9c6510 75%,
+        #5b3508 100%);
 
-    z-index:5;
+    box-shadow:
+        0 0 12px rgba(255,205,50,.35);
 }
 
 
-/* =====================================================
-   PÉTALOS QUE PASAN CERCA DE LA CÁMARA
-===================================================== */
+/* =========================
+        ESTAMBRES
+========================= */
 
-.near-petal{
+.stamen{
     position:absolute;
 
-    width:25px;
-    height:45px;
+    left:50%;
+    top:50%;
 
-    border-radius:
-        60% 40% 60% 40%;
+    width:3px;
+    height:38px;
+
+    background:#9a650d;
+
+    transform-origin:bottom center;
+    border-radius:5px;
+}
+
+.stamen::after{
+    content:"";
+
+    position:absolute;
+
+    top:-5px;
+    left:-2px;
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:#dca82a;
+
+    box-shadow:0 0 5px rgba(255,220,70,.5);
+}
+
+
+/* =========================
+        PÉTALOS CAYENDO
+========================= */
+
+.falling-petal{
+    position:absolute;
+
+    width:13px;
+    height:25px;
+
+    border-radius:70% 30% 70% 30%;
 
     background:
         linear-gradient(
             135deg,
-            #fffbd0,
-            #ffdf39,
-            #d99b00
+            #fffbdc,
+            #f7d63e,
+            #e5a814
         );
-
-    opacity:.8;
-
-    pointer-events:none;
-
-    z-index:8;
-}
-
-
-/* =====================================================
-   BRISA
-===================================================== */
-
-.tulip{
-    animation:
-        breeze
-        3s
-        ease-in-out
-        infinite
-        alternate;
-}
-
-@keyframes breeze{
-
-    from{
-        margin-left:-2px;
-    }
-
-    to{
-        margin-left:3px;
-    }
-
-}
-
-
-/* =====================================================
-   VIÑETA
-===================================================== */
-
-.vignette{
-    position:fixed;
-    inset:0;
-
-    z-index:15;
-
-    pointer-events:none;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            transparent 45%,
-            rgba(15,35,12,.08) 70%,
-            rgba(5,20,8,.35) 100%
-        );
-}
-
-
-/* =====================================================
-   MENSAJE
-===================================================== */
-
-.message{
-    position:fixed;
-
-    left:50%;
-    bottom:6%;
-
-    width:100%;
-
-    text-align:center;
-
-    transform:
-        translate(-50%,30px);
 
     opacity:0;
 
-    z-index:30;
-
-    pointer-events:none;
+    z-index:4;
 
     animation:
-        appearMessage
-        2.5s
-        ease-out
-        8s
-        forwards;
-
-    text-shadow:
-        0 3px 10px rgba(0,0,0,.45),
-        0 0 25px rgba(255,245,160,.3);
+        fallPetal
+        linear
+        infinite;
 }
 
-.love{
+@keyframes fallPetal{
+
+    0%{
+        opacity:0;
+        transform:
+            translateY(-20px)
+            translateX(0)
+            rotate(0deg);
+    }
+
+    10%{
+        opacity:.9;
+    }
+
+    90%{
+        opacity:.75;
+    }
+
+    100%{
+        opacity:0;
+        transform:
+            translateY(110vh)
+            translateX(var(--drift))
+            rotate(520deg);
+    }
+}
+
+
+/* =========================
+        MENSAJE
+========================= */
+
+.message{
+    position:absolute;
+
+    left:50%;
+    bottom:4.5%;
+
+    width:100%;
+
+    transform:translateX(-50%);
+
+    text-align:center;
+
+    z-index:10;
+
+    opacity:0;
+
+    animation:
+        messageAppear
+        2s
+        ease-out
+        6.5s
+        forwards;
+}
+
+.message .love{
     display:block;
 
-    font-family:
-        'Great Vibes',
-        cursive;
+    font-family:'Great Vibes',cursive;
 
-    font-size:
-        clamp(60px,12vw,105px);
+    font-size:clamp(52px,10vw,82px);
 
-    line-height:.95;
+    line-height:1;
 
-    color:#fff8bd;
+    color:#fff4b0;
+
+    text-shadow:
+        0 0 10px rgba(255,235,130,.35),
+        0 0 25px rgba(255,215,80,.2);
 }
 
-.words{
+.message .flowers{
     display:block;
 
     margin-top:8px;
 
-    font-family:
-        'Cormorant Garamond',
-        serif;
+    font-family:'Cormorant Garamond',serif;
 
-    font-size:
-        clamp(24px,5vw,40px);
+    font-size:clamp(25px,5vw,38px);
 
     letter-spacing:2px;
 
-    color:#fffde8;
+    color:#fffbe4;
 }
 
-@keyframes appearMessage{
+@keyframes messageAppear{
 
     from{
         opacity:0;
-
-        transform:
-            translate(-50%,30px);
+        transform:translate(-50%,15px);
     }
 
     to{
         opacity:1;
-
-        transform:
-            translate(-50%,0);
+        transform:translate(-50%,0);
     }
 }
 
 
-/* =====================================================
-   MÓVIL
-===================================================== */
+/* =========================
+        RESPONSIVE
+========================= */
 
 @media(max-width:600px){
 
-    .sun{
+    .moon{
         width:90px;
         height:90px;
-
-        right:7%;
-        top:8%;
+        top:7%;
+        right:8%;
     }
 
-    .field{
-        perspective:500px;
+    .bouquet{
+        transform:
+            translateX(-50%)
+            scale(.78);
+
+        transform-origin:
+            bottom center;
+
+        bottom:65px;
     }
 
     .message{
-        bottom:5%;
+        bottom:4%;
     }
 
-    .love{
-        font-size:58px;
+    .message .love{
+        font-size:54px;
     }
 
-    .words{
+    .message .flowers{
         font-size:24px;
     }
+}
 
+@media(max-height:700px){
+
+    .bouquet{
+        transform:
+            translateX(-50%)
+            scale(.64);
+
+        bottom:20px;
+    }
+
+    .message{
+        bottom:2%;
+    }
 }
 
 </style>
@@ -629,23 +663,151 @@ body{
 
 <body>
 
-<div class="sky"></div>
+<div class="moon"></div>
 
-<div class="sun"></div>
+<div class="ground"></div>
 
-<div class="cloud one"></div>
-<div class="cloud two"></div>
-<div class="cloud three"></div>
 
-<div class="horizon"></div>
+<div class="bouquet">
 
-<div class="field">
+    <!-- TALLOS -->
 
-    <div class="world" id="world"></div>
+    <div class="stem s1"></div>
+    <div class="stem s2"></div>
+    <div class="stem s3"></div>
+    <div class="stem s4"></div>
+    <div class="stem s5"></div>
+    <div class="stem s6"></div>
+
+
+    <!-- HOJAS -->
+
+    <div class="leaf leaf1"></div>
+    <div class="leaf leaf2"></div>
+    <div class="leaf leaf3"></div>
+    <div class="leaf leaf4"></div>
+
+
+    <!-- LIRIO 1 -->
+
+    <div class="lily lily1">
+
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+
+        <div class="lily-center"></div>
+
+        <div class="stamen"></div>
+        <div class="stamen"></div>
+        <div class="stamen"></div>
+
+    </div>
+
+
+    <!-- LIRIO 2 -->
+
+    <div class="lily lily2">
+
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+
+        <div class="lily-center"></div>
+
+        <div class="stamen"></div>
+        <div class="stamen"></div>
+        <div class="stamen"></div>
+
+    </div>
+
+
+    <!-- LIRIO 3 -->
+
+    <div class="lily lily3">
+
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+
+        <div class="lily-center"></div>
+
+        <div class="stamen"></div>
+        <div class="stamen"></div>
+        <div class="stamen"></div>
+
+    </div>
+
+
+    <!-- LIRIO 4 -->
+
+    <div class="lily lily4">
+
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+
+        <div class="lily-center"></div>
+
+        <div class="stamen"></div>
+        <div class="stamen"></div>
+        <div class="stamen"></div>
+
+    </div>
+
+
+    <!-- LIRIO 5 -->
+
+    <div class="lily lily5">
+
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+
+        <div class="lily-center"></div>
+
+        <div class="stamen"></div>
+        <div class="stamen"></div>
+        <div class="stamen"></div>
+
+    </div>
+
+
+    <!-- LIRIO 6 -->
+
+    <div class="lily lily6">
+
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+        <div class="lily-petal"></div>
+
+        <div class="lily-center"></div>
+
+        <div class="stamen"></div>
+        <div class="stamen"></div>
+        <div class="stamen"></div>
+
+    </div>
 
 </div>
-
-<div class="vignette"></div>
 
 
 <div class="message">
@@ -654,8 +816,8 @@ body{
         Te amo
     </span>
 
-    <span class="words">
-        Flores amarillas para ti 🌷
+    <span class="flowers">
+        Flores amarillas para ti 🌼
     </span>
 
 </div>
@@ -663,512 +825,69 @@ body{
 
 <script>
 
-/* =====================================================
-   CONFIGURACIÓN
-===================================================== */
+/* =========================
+        ESTRELLAS
+========================= */
 
-const world =
-    document.getElementById("world");
+for(let i=0;i<45;i++){
 
-const field =
-    document.querySelector(".field");
-
-
-/*
-   MUCHÍSIMOS TULIPANES
-*/
-
-const TOTAL =
-    window.innerWidth < 600
-        ? 260
-        : 420;
-
-
-/*
-   Profundidad del mundo.
-
-   Los tulipanes nacen en diferentes
-   distancias y se van acercando.
-*/
-
-const MAX_Z = 1000;
-
-const SPEED = 0.55;
-
-
-/* =====================================================
-   CREAR TULIPÁN
-===================================================== */
-
-function makeTulip(){
-
-    const tulip =
+    const star =
         document.createElement("div");
 
-    tulip.className =
-        "tulip";
+    star.className =
+        "star";
 
+    star.style.left =
+        Math.random()*100+"%";
 
-    /*
-       Flor
-    */
+    star.style.top =
+        Math.random()*65+"%";
 
-    const flower =
-        document.createElement("div");
+    star.style.animationDelay =
+        Math.random()*3+"s";
 
-    flower.className =
-        "flower";
+    star.style.opacity =
+        Math.random();
 
-
-    for(let i=0;i<3;i++){
-
-        const petal =
-            document.createElement("div");
-
-        petal.className =
-            "petal";
-
-        flower.appendChild(
-            petal
-        );
-
-    }
-
-
-    const center =
-        document.createElement("div");
-
-    center.className =
-        "center";
-
-    flower.appendChild(
-        center
+    document.body.appendChild(
+        star
     );
-
-
-    /*
-       Tallo
-    */
-
-    const stem =
-        document.createElement("div");
-
-    stem.className =
-        "stem";
-
-
-    /*
-       Hojas
-    */
-
-    const leafLeft =
-        document.createElement("div");
-
-    leafLeft.className =
-        "leaf left";
-
-
-    const leafRight =
-        document.createElement("div");
-
-    leafRight.className =
-        "leaf right";
-
-
-    tulip.appendChild(
-        flower
-    );
-
-    tulip.appendChild(
-        stem
-    );
-
-    tulip.appendChild(
-        leafLeft
-    );
-
-    tulip.appendChild(
-        leafRight
-    );
-
-
-    world.appendChild(
-        tulip
-    );
-
-
-    /*
-       Posición inicial
-    */
-
-    tulip.userData = {
-
-        /*
-           X:
-
-           -1 = extremo izquierdo
-            0 = centro
-            1 = extremo derecho
-        */
-
-        x:
-            (Math.random()-.5)
-            * 2.4,
-
-        /*
-           Z:
-
-           0 = cámara
-           1000 = horizonte
-        */
-
-        z:
-            Math.random()
-            * MAX_Z,
-
-        /*
-           Variación de tamaño
-        */
-
-        scale:
-            .65 +
-            Math.random()
-            * .65,
-
-        /*
-           Pequeña inclinación
-        */
-
-        tilt:
-            (Math.random()-.5)
-            * 10
-
-    };
-
-
-    return tulip;
-
 }
 
 
-/* =====================================================
-   GENERAR EL CAMPO
-===================================================== */
+/* =========================
+        PÉTALOS
+========================= */
 
-for(
-    let i=0;
-    i<TOTAL;
-    i++
-){
+for(let i=0;i<20;i++){
 
-    makeTulip();
+    const petal =
+        document.createElement("div");
 
-}
+    petal.className =
+        "falling-petal";
 
+    petal.style.left =
+        Math.random()*100+"%";
 
-/* =====================================================
-   PROYECCIÓN
-===================================================== */
+    petal.style.top =
+        (-10-Math.random()*20)+"%";
 
-function updateTulip(
-    tulip
-){
+    petal.style.animationDuration =
+        (7+Math.random()*8)+"s";
 
-    const d =
-        tulip.userData;
+    petal.style.animationDelay =
+        (5+Math.random()*12)+"s";
 
-
-    /*
-       Avanzamos hacia la cámara.
-    */
-
-    d.z -= SPEED;
-
-
-    /*
-       Cuando una flor nos pasa,
-       la mandamos nuevamente al
-       horizonte.
-
-       Esto crea el efecto infinito.
-    */
-
-    if(d.z < 1){
-
-        d.z =
-            MAX_Z +
-            Math.random()*300;
-
-        d.x =
-            (Math.random()-.5)
-            * 2.4;
-
-        d.scale =
-            .65 +
-            Math.random()
-            * .65;
-    }
-
-
-    /*
-       Perspectiva.
-
-       Mientras menor sea Z,
-       mayor se vuelve la flor.
-    */
-
-    const perspective =
-        850 /
-        (d.z + 20);
-
-
-    /*
-       Posición horizontal.
-
-       Los tulipanes se abren
-       hacia los lados.
-    */
-
-    const x =
-        window.innerWidth/2 +
-        d.x *
-        window.innerWidth *
-        perspective *
-        .55;
-
-
-    /*
-       Horizonte del campo.
-    */
-
-    const horizon =
-        window.innerHeight *
-        .10;
-
-
-    /*
-       Posición vertical.
-
-       Cerca = abajo.
-       Lejos = horizonte.
-    */
-
-    const y =
-        horizon +
-        perspective *
-        window.innerHeight *
-        .78;
-
-
-    /*
-       Tamaño.
-    */
-
-    const scale =
-        perspective *
-        d.scale *
-        1.15;
-
-
-    /*
-       Si está muy lejos,
-       todavía debe ser visible.
-    */
-
-    const opacity =
-        Math.min(
-            1,
-            Math.max(
-                .25,
-                perspective*2.8
-            )
-        );
-
-
-    tulip.style.transform =
-        `
-        translate3d(
-            ${x}px,
-            ${y}px,
-            0
-        )
-        rotate(${d.tilt}deg)
-        scale(${scale})
-        `;
-
-
-    tulip.style.opacity =
-        opacity;
-
-
-    /*
-       Las flores cercanas
-       quedan por encima.
-    */
-
-    tulip.style.zIndex =
-        Math.floor(
-            2000-d.z
-        );
-
-}
-
-
-/* =====================================================
-   PETALITOS QUE PASAN VOLANDO
-===================================================== */
-
-const petals = [];
-
-for(
-    let i=0;
-    i<30;
-    i++
-){
-
-    const p =
-        document.createElement(
-            "div"
-        );
-
-    p.className =
-        "near-petal";
-
-    field.appendChild(p);
-
-    petals.push({
-
-        element:p,
-
-        x:
-            Math.random()
-            * window.innerWidth,
-
-        y:
-            Math.random()
-            * window.innerHeight,
-
-        speed:
-            .4+
-            Math.random()*.8,
-
-        drift:
-            (Math.random()-.5)*1.2,
-
-        rotate:
-            Math.random()*360
-
-    });
-
-}
-
-
-/* =====================================================
-   ANIMAR PETALITOS
-===================================================== */
-
-function updatePetals(){
-
-    for(
-        const p of petals
-    ){
-
-        p.y += p.speed;
-
-        p.x += p.drift;
-
-        p.rotate += .8;
-
-
-        if(
-            p.y >
-            window.innerHeight
-        ){
-
-            p.y=-50;
-
-            p.x=
-                Math.random()
-                * window.innerWidth;
-        }
-
-
-        p.element.style.transform =
-            `
-            translate(
-                ${p.x}px,
-                ${p.y}px
-            )
-            rotate(${p.rotate}deg)
-            `;
-
-    }
-
-}
-
-
-/* =====================================================
-   ANIMACIÓN PRINCIPAL
-===================================================== */
-
-function animate(){
-
-    const tulips =
-        document.querySelectorAll(
-            ".tulip"
-        );
-
-
-    /*
-       Actualizamos TODOS los
-       tulipanes.
-    */
-
-    for(
-        const tulip of tulips
-    ){
-
-        updateTulip(
-            tulip
-        );
-
-    }
-
-
-    updatePetals();
-
-
-    requestAnimationFrame(
-        animate
+    petal.style.setProperty(
+        "--drift",
+        ((Math.random()-.5)*160)+"px"
     );
 
+    document.body.appendChild(
+        petal
+    );
 }
-
-
-/* =====================================================
-   INICIAR
-===================================================== */
-
-animate();
-
-
-/* =====================================================
-   AJUSTE AL ROTAR EL CELULAR
-===================================================== */
-
-window.addEventListener(
-    "resize",
-    () => {
-
-        /*
-          No hace falta reconstruir
-          el campo; simplemente
-          dejamos que el navegador
-          recalcule las posiciones.
-        */
-
-    }
-);
 
 </script>
 

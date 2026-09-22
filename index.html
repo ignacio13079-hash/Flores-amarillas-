@@ -1,835 +1,1103 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Flores amarillas para ti 🌼</title>
+<title>Flores amarillas para ti 🌻</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap"
+    rel="stylesheet"
+>
 
 <style>
 
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
+
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-html,body{
-    margin:0;
+html,
+body{
     width:100%;
     height:100%;
     overflow:hidden;
 }
 
 body{
-    background:
-        radial-gradient(circle at 50% 48%,rgba(45,85,45,.22),transparent 35%),
-        linear-gradient(to bottom,#020806 0%,#06120d 55%,#0b1c12 100%);
-    font-family:'Cormorant Garamond',serif;
+    background:#020403;
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
     color:white;
 }
 
 
 /* =========================
-        LUNA
+   ESCENA
+========================= */
+
+.scene{
+
+    position:relative;
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 65%,
+            rgba(54,105,50,.22),
+            transparent 45%
+        ),
+
+        linear-gradient(
+            to bottom,
+            #020403 0%,
+            #061009 60%,
+            #0a160d 100%
+        );
+
+}
+
+
+/* =========================
+   LUNA
 ========================= */
 
 .moon{
+
     position:absolute;
+
     width:125px;
     height:125px;
+
     top:8%;
     right:12%;
+
     border-radius:50%;
 
     background:
-        radial-gradient(circle at 35% 35%,
-        #fffef0 0%,
-        #fff9c9 45%,
-        #f4e9a4 75%,
-        #d8cc88 100%);
+
+        radial-gradient(
+            circle at 35% 35%,
+            #fffde8,
+            #e8e4bb 65%,
+            #aaa77f
+        );
+
+    opacity:.72;
 
     box-shadow:
-        0 0 30px rgba(255,248,190,.35),
-        0 0 80px rgba(255,245,180,.12);
 
-    opacity:0;
-    animation:moonAppear 2s ease-out 1s forwards;
-}
+        0 0 35px
+        rgba(255,245,190,.25),
 
-@keyframes moonAppear{
-    from{
-        opacity:0;
-        transform:scale(.7);
-    }
+        0 0 100px
+        rgba(255,245,190,.12);
 
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
 }
 
 
 /* =========================
-        ESTRELLAS
+   ESTRELLAS
 ========================= */
 
-.star{
+.stars{
+
     position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+}
+
+.star{
+
+    position:absolute;
+
     width:3px;
     height:3px;
-    background:#fffbd5;
+
     border-radius:50%;
-    box-shadow:0 0 6px #fffbd5;
-    animation:twinkle 2s infinite alternate;
+
+    background:#fff4a3;
+
+    box-shadow:
+        0 0 8px #fff1a0;
+
+    animation:
+        twinkle
+        3s
+        ease-in-out
+        infinite;
+
 }
 
 @keyframes twinkle{
-    from{
-        opacity:.25;
-        transform:scale(.7);
+
+    0%,100%{
+        opacity:.2;
+        transform:scale(.6);
     }
 
-    to{
+    50%{
         opacity:1;
-        transform:scale(1.4);
+        transform:scale(1.3);
     }
+
 }
 
 
 /* =========================
-        SUELO
+   BRILLO
+========================= */
+
+.glow{
+
+    position:absolute;
+
+    left:50%;
+    bottom:40%;
+
+    width:230px;
+    height:230px;
+
+    transform:
+        translate(-50%,50%);
+
+    border-radius:50%;
+
+    background:
+        rgba(255,215,70,.07);
+
+    filter:blur(40px);
+
+    animation:
+        glowPulse
+        4s
+        ease-in-out
+        infinite;
+
+}
+
+@keyframes glowPulse{
+
+    0%,100%{
+        opacity:.2;
+        scale:.7;
+    }
+
+    50%{
+        opacity:.8;
+        scale:1.15;
+    }
+
+}
+
+
+/* =========================
+   SUELO
 ========================= */
 
 .ground{
+
     position:absolute;
-    left:0;
-    right:0;
-    bottom:0;
-    height:125px;
 
-    background:
-        radial-gradient(ellipse at center,
-        rgba(40,90,42,.5),
-        transparent 65%),
-        linear-gradient(to top,
-        #020805,
-        transparent);
+    left:-10%;
+    bottom:-100px;
 
-    z-index:1;
+    width:120%;
+    height:170px;
+
+    border-radius:
+        50% 50% 0 0;
+
+    background:#061009;
+
+    box-shadow:
+        0 -15px 40px
+        rgba(40,90,40,.15);
+
 }
 
 
 /* =========================
-        RAMO
+   FLOR
 ========================= */
 
-.bouquet{
+.flower{
+
     position:absolute;
+
     left:50%;
-    bottom:55px;
+    bottom:70px;
 
-    width:380px;
-    height:540px;
+    width:270px;
+    height:490px;
 
-    transform:translateX(-50%);
-    z-index:5;
+    transform:
+        translateX(-50%);
+
 }
 
 
 /* =========================
-        TALLOS
+   TALLO
 ========================= */
 
 .stem{
+
     position:absolute;
+
     left:50%;
     bottom:0;
 
-    width:8px;
+    width:11px;
     height:0;
+
+    transform:
+        translateX(-50%);
 
     border-radius:20px;
 
     background:
-        linear-gradient(to right,
-        #102f19,
-        #4c8c3d,
-        #1d5227);
+
+        linear-gradient(
+            to right,
+            #12361c,
+            #4a8a3e,
+            #1c4b25
+        );
 
     transform-origin:bottom;
 
-    animation:growStem 2.5s ease-out 1s forwards;
-}
+    animation:
+        growStem
+        3s
+        ease-out
+        forwards;
 
-.stem.s1{
-    transform:translateX(-50%) rotate(-13deg);
-}
-
-.stem.s2{
-    transform:translateX(-50%) rotate(-7deg);
-}
-
-.stem.s3{
-    transform:translateX(-50%) rotate(-3deg);
-}
-
-.stem.s4{
-    transform:translateX(-50%) rotate(3deg);
-}
-
-.stem.s5{
-    transform:translateX(-50%) rotate(8deg);
-}
-
-.stem.s6{
-    transform:translateX(-50%) rotate(14deg);
 }
 
 @keyframes growStem{
+
     from{
         height:0;
     }
 
     to{
-        height:365px;
+        height:355px;
     }
+
 }
 
 
 /* =========================
-        HOJAS
+   HOJAS
 ========================= */
 
 .leaf{
+
     position:absolute;
 
-    width:115px;
-    height:42px;
+    width:108px;
+    height:50px;
 
     background:
-        linear-gradient(135deg,
-        #12351b,
-        #3f7837 55%,
-        #6ba451);
 
-    border-radius:100% 0 100% 0;
+        linear-gradient(
+            135deg,
+            #183d20,
+            #579447
+        );
+
+    border-radius:
+        100% 0 100% 0;
 
     opacity:0;
 
-    box-shadow:
-        inset 0 0 8px rgba(255,255,255,.08);
 }
 
-.leaf1{
-    left:45px;
-    bottom:155px;
-    transform:rotate(-32deg) scale(0);
-    animation:leafAppear 1s ease-out 3s forwards;
-}
+.leaf::after{
 
-.leaf2{
-    right:42px;
-    bottom:190px;
-    transform:rotate(25deg) scale(0);
-    animation:leafAppear 1s ease-out 3.3s forwards;
-}
-
-.leaf3{
-    left:90px;
-    bottom:250px;
-    transform:rotate(-20deg) scale(0);
-    animation:leafAppear 1s ease-out 3.5s forwards;
-}
-
-.leaf4{
-    right:80px;
-    bottom:275px;
-    transform:rotate(22deg) scale(0);
-    animation:leafAppear 1s ease-out 3.7s forwards;
-}
-
-@keyframes leafAppear{
-
-    from{
-        opacity:0;
-        transform:scale(0);
-    }
-
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
-}
-
-
-/* =========================
-        LIRIOS
-========================= */
-
-.lily{
-    position:absolute;
-
-    width:125px;
-    height:125px;
-
-    transform:scale(0);
-
-    animation:lilyAppear 1.5s cubic-bezier(.2,1.5,.5,1) forwards;
-}
-
-
-/* posiciones */
-
-.lily1{
-    left:22px;
-    top:65px;
-    transform:rotate(-17deg) scale(0);
-    animation-delay:4s;
-}
-
-.lily2{
-    left:125px;
-    top:20px;
-    transform:rotate(-5deg) scale(0);
-    animation-delay:4.25s;
-}
-
-.lily3{
-    right:15px;
-    top:65px;
-    transform:rotate(17deg) scale(0);
-    animation-delay:4.5s;
-}
-
-.lily4{
-    left:65px;
-    top:115px;
-    transform:rotate(-9deg) scale(0);
-    animation-delay:4.75s;
-}
-
-.lily5{
-    left:155px;
-    top:120px;
-    transform:rotate(11deg) scale(0);
-    animation-delay:5s;
-}
-
-.lily6{
-    left:128px;
-    top:-20px;
-    transform:rotate(4deg) scale(0);
-    animation-delay:5.25s;
-}
-
-
-@keyframes lilyAppear{
-
-    0%{
-        opacity:0;
-        transform:scale(0);
-    }
-
-    70%{
-        opacity:1;
-        transform:scale(1.08);
-    }
-
-    100%{
-        opacity:1;
-        transform:scale(1);
-    }
-}
-
-
-/* =========================
-        PÉTALOS
-========================= */
-
-.lily-petal{
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    width:48px;
-    height:88px;
-
-    margin-left:-24px;
-    margin-top:-88px;
-
-    border-radius:
-        65% 65%
-        42% 42%;
-
-    transform-origin:50% 100%;
-
-    background:
-        linear-gradient(
-            to top,
-            #e6aa18 0%,
-            #f6d75b 20%,
-            #fff1ad 48%,
-            #fffdf0 78%,
-            #ffffff 100%
-        );
-
-    box-shadow:
-        inset 0 0 9px rgba(255,255,255,.35),
-        0 0 8px rgba(255,220,80,.12);
-}
-
-.lily-petal:nth-child(1){
-    transform:rotate(0deg);
-}
-
-.lily-petal:nth-child(2){
-    transform:rotate(60deg);
-}
-
-.lily-petal:nth-child(3){
-    transform:rotate(120deg);
-}
-
-.lily-petal:nth-child(4){
-    transform:rotate(180deg);
-}
-
-.lily-petal:nth-child(5){
-    transform:rotate(240deg);
-}
-
-.lily-petal:nth-child(6){
-    transform:rotate(300deg);
-}
-
-
-/* =========================
-        CENTRO
-========================= */
-
-.lily-center{
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    width:32px;
-    height:32px;
-
-    transform:translate(-50%,-50%);
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(circle,
-        #fff4a0 0%,
-        #e6ae22 38%,
-        #9c6510 75%,
-        #5b3508 100%);
-
-    box-shadow:
-        0 0 12px rgba(255,205,50,.35);
-}
-
-
-/* =========================
-        ESTAMBRES
-========================= */
-
-.stamen{
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    width:3px;
-    height:38px;
-
-    background:#9a650d;
-
-    transform-origin:bottom center;
-    border-radius:5px;
-}
-
-.stamen::after{
     content:"";
 
     position:absolute;
 
-    top:-5px;
-    left:-2px;
+    width:2px;
+    height:90px;
 
-    width:7px;
-    height:7px;
+    left:50%;
+    top:-20px;
 
-    border-radius:50%;
+    background:
+        rgba(170,210,120,.45);
 
-    background:#dca82a;
+    transform:
+        rotate(55deg);
 
-    box-shadow:0 0 5px rgba(255,220,70,.5);
+}
+
+.leaf-left{
+
+    left:20px;
+    bottom:145px;
+
+    transform:
+        rotate(-28deg)
+        scale(0);
+
+    animation:
+        leafLeft
+        1s
+        ease-out
+        3s
+        forwards;
+
+}
+
+.leaf-right{
+
+    right:20px;
+    bottom:210px;
+
+    transform:
+        rotate(25deg)
+        scale(0);
+
+    animation:
+        leafRight
+        1s
+        ease-out
+        3.4s
+        forwards;
+
+}
+
+@keyframes leafLeft{
+
+    to{
+
+        opacity:1;
+
+        transform:
+            rotate(-28deg)
+            scale(1);
+
+    }
+
+}
+
+@keyframes leafRight{
+
+    to{
+
+        opacity:1;
+
+        transform:
+            rotate(25deg)
+            scale(1);
+
+    }
+
 }
 
 
 /* =========================
-        PÉTALOS CAYENDO
+   CABEZA DE LA FLOR
 ========================= */
 
-.falling-petal{
+.flower-head{
+
     position:absolute;
 
-    width:13px;
-    height:25px;
+    left:50%;
 
-    border-radius:70% 30% 70% 30%;
+    bottom:320px;
+
+    width:190px;
+    height:190px;
+
+    transform:
+        translateX(-50%)
+        scale(0);
+
+    animation:
+
+        flowerAppear
+        1.5s
+        cubic-bezier(.2,1.5,.5,1)
+        3.8s
+        forwards;
+
+}
+
+@keyframes flowerAppear{
+
+    0%{
+
+        transform:
+            translateX(-50%)
+            scale(0);
+
+    }
+
+    70%{
+
+        transform:
+            translateX(-50%)
+            scale(1.12);
+
+    }
+
+    100%{
+
+        transform:
+            translateX(-50%)
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================
+   PÉTALOS
+   NUEVA GEOMETRÍA
+========================= */
+
+.petal{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:52px;
+    height:88px;
+
+    /*
+       La parte inferior del pétalo
+       queda exactamente en el centro.
+    */
+
+    margin-left:-26px;
+    margin-top:-88px;
+
+    border-radius:
+        55% 55% 48% 48%;
 
     background:
+
+        linear-gradient(
+            145deg,
+            #fff36a 0%,
+            #ffd21f 55%,
+            #e9a900 100%
+        );
+
+    /*
+       El punto de giro es la base
+       del pétalo, justo en el centro.
+    */
+
+    transform-origin:
+        50% 100%;
+
+    box-shadow:
+
+        inset
+        0 0 10px
+        rgba(255,255,255,.3),
+
+        0 0 10px
+        rgba(255,210,30,.18);
+
+}
+
+
+/* =========================
+   12 PÉTALOS
+========================= */
+
+.petal:nth-child(1){
+    transform:rotate(0deg);
+}
+
+.petal:nth-child(2){
+    transform:rotate(30deg);
+}
+
+.petal:nth-child(3){
+    transform:rotate(60deg);
+}
+
+.petal:nth-child(4){
+    transform:rotate(90deg);
+}
+
+.petal:nth-child(5){
+    transform:rotate(120deg);
+}
+
+.petal:nth-child(6){
+    transform:rotate(150deg);
+}
+
+.petal:nth-child(7){
+    transform:rotate(180deg);
+}
+
+.petal:nth-child(8){
+    transform:rotate(210deg);
+}
+
+.petal:nth-child(9){
+    transform:rotate(240deg);
+}
+
+.petal:nth-child(10){
+    transform:rotate(270deg);
+}
+
+.petal:nth-child(11){
+    transform:rotate(300deg);
+}
+
+.petal:nth-child(12){
+    transform:rotate(330deg);
+}
+
+
+/* =========================
+   CENTRO
+========================= */
+
+.center{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:72px;
+    height:72px;
+
+    transform:
+        translate(-50%,-50%)
+        scale(0);
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+            circle at 30% 30%,
+            #9d7121,
+            #5b390d 55%,
+            #241504
+        );
+
+    box-shadow:
+
+        inset
+        0 0 15px
+        rgba(255,210,70,.25),
+
+        0 0 20px
+        rgba(255,180,30,.2);
+
+    animation:
+
+        centerAppear
+        1s
+        ease-out
+        5.2s
+        forwards;
+
+}
+
+@keyframes centerAppear{
+
+    0%{
+
+        transform:
+            translate(-50%,-50%)
+            scale(0);
+
+    }
+
+    80%{
+
+        transform:
+            translate(-50%,-50%)
+            scale(1.15);
+
+    }
+
+    100%{
+
+        transform:
+            translate(-50%,-50%)
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================
+   MOVIMIENTO
+========================= */
+
+.flower-head{
+
+    animation:
+
+        flowerAppear
+        1.5s
+        cubic-bezier(.2,1.5,.5,1)
+        3.8s
+        forwards,
+
+        sway
+        5s
+        ease-in-out
+        6s
+        infinite;
+
+}
+
+@keyframes sway{
+
+    0%,100%{
+
+        margin-left:0;
+
+        rotate:-1deg;
+
+    }
+
+    50%{
+
+        margin-left:3px;
+
+        rotate:1deg;
+
+    }
+
+}
+
+
+/* =========================
+   PÉTALOS QUE CAEN
+========================= */
+
+.falling-petals{
+
+    position:absolute;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:5;
+
+}
+
+.falling-petal{
+
+    position:absolute;
+
+    top:-40px;
+
+    width:14px;
+    height:22px;
+
+    border-radius:
+        70% 30% 70% 30%;
+
+    background:
+
         linear-gradient(
             135deg,
-            #fffbdc,
-            #f7d63e,
-            #e5a814
+            #fff36b,
+            #ffd21f 65%,
+            #e9a900
         );
 
     opacity:0;
 
-    z-index:4;
+    filter:
+
+        drop-shadow(
+            0 0 5px
+            rgba(255,210,40,.25)
+        );
 
     animation:
-        fallPetal
+        fallingPetal
         linear
         infinite;
+
 }
 
-@keyframes fallPetal{
+@keyframes fallingPetal{
 
     0%{
-        opacity:0;
+
         transform:
-            translateY(-20px)
-            translateX(0)
-            rotate(0deg);
+            translate3d(
+                0,
+                -40px,
+                0
+            )
+            rotate(0deg)
+            scale(.7);
+
+        opacity:0;
+
     }
 
     10%{
-        opacity:.9;
+
+        opacity:.8;
+
     }
 
-    90%{
-        opacity:.75;
+    45%{
+
+        transform:
+            translate3d(
+                var(--drift),
+                45vh,
+                0
+            )
+            rotate(180deg)
+            scale(1);
+
+    }
+
+    80%{
+
+        opacity:.65;
+
     }
 
     100%{
-        opacity:0;
+
         transform:
-            translateY(110vh)
-            translateX(var(--drift))
-            rotate(520deg);
+            translate3d(
+                calc(var(--drift) * -1),
+                110vh,
+                0
+            )
+            rotate(420deg)
+            scale(.8);
+
+        opacity:0;
+
     }
+
 }
 
 
 /* =========================
-        MENSAJE
+   MENSAJE
 ========================= */
 
 .message{
+
     position:absolute;
 
     left:50%;
-    bottom:4.5%;
+    bottom:5%;
 
-    width:100%;
-
-    transform:translateX(-50%);
+    width:95%;
 
     text-align:center;
 
-    z-index:10;
-
     opacity:0;
+
+    transform:
+        translate(-50%,20px);
 
     animation:
         messageAppear
         2s
-        ease-out
-        6.5s
+        ease
+        6.3s
         forwards;
+
 }
 
 .message .love{
+
     display:block;
 
-    font-family:'Great Vibes',cursive;
+    font-family:
+        "Great Vibes",
+        cursive;
 
-    font-size:clamp(52px,10vw,82px);
+    font-size:
+        clamp(50px,12vw,80px);
+
+    font-weight:400;
+
+    color:#fff1a3;
 
     line-height:1;
 
-    color:#fff4b0;
-
     text-shadow:
-        0 0 10px rgba(255,235,130,.35),
-        0 0 25px rgba(255,215,80,.2);
+
+        0 0 10px
+        rgba(255,220,90,.35),
+
+        0 0 30px
+        rgba(255,210,60,.25);
+
 }
 
 .message .flowers{
+
     display:block;
 
     margin-top:8px;
 
-    font-family:'Cormorant Garamond',serif;
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
 
-    font-size:clamp(25px,5vw,38px);
+    font-size:
+        clamp(24px,6vw,38px);
+
+    font-weight:500;
 
     letter-spacing:2px;
 
-    color:#fffbe4;
+    color:#ffe66d;
+
+    text-shadow:
+
+        0 0 10px
+        rgba(255,214,60,.25),
+
+        0 0 25px
+        rgba(255,214,60,.12);
+
 }
 
 @keyframes messageAppear{
 
-    from{
-        opacity:0;
-        transform:translate(-50%,15px);
+    to{
+
+        opacity:1;
+
+        transform:
+            translate(-50%,0);
+
     }
 
-    to{
-        opacity:1;
-        transform:translate(-50%,0);
-    }
 }
 
 
 /* =========================
-        RESPONSIVE
+   CELULAR
 ========================= */
 
-@media(max-width:600px){
+@media(max-width:500px){
 
-    .moon{
-        width:90px;
-        height:90px;
-        top:7%;
-        right:8%;
-    }
+    .flower{
 
-    .bouquet{
         transform:
             translateX(-50%)
-            scale(.78);
+            scale(.82);
 
         transform-origin:
             bottom center;
 
         bottom:65px;
+
     }
 
-    .message{
-        bottom:4%;
+    .moon{
+
+        width:90px;
+        height:90px;
+
+        right:8%;
+        top:7%;
+
     }
 
-    .message .love{
-        font-size:54px;
-    }
-
-    .message .flowers{
-        font-size:24px;
-    }
 }
 
-@media(max-height:700px){
+@media(max-height:650px){
 
-    .bouquet{
+    .flower{
+
         transform:
             translateX(-50%)
-            scale(.64);
+            scale(.68);
 
-        bottom:20px;
+        bottom:25px;
+
     }
 
     .message{
+
         bottom:2%;
+
     }
+
 }
 
 </style>
+
 </head>
 
 
 <body>
 
-<div class="moon"></div>
-
-<div class="ground"></div>
+<main class="scene">
 
 
-<div class="bouquet">
+    <!-- LUNA -->
 
-    <!-- TALLOS -->
-
-    <div class="stem s1"></div>
-    <div class="stem s2"></div>
-    <div class="stem s3"></div>
-    <div class="stem s4"></div>
-    <div class="stem s5"></div>
-    <div class="stem s6"></div>
+    <div class="moon"></div>
 
 
-    <!-- HOJAS -->
+    <!-- BRILLO -->
 
-    <div class="leaf leaf1"></div>
-    <div class="leaf leaf2"></div>
-    <div class="leaf leaf3"></div>
-    <div class="leaf leaf4"></div>
+    <div class="glow"></div>
 
 
-    <!-- LIRIO 1 -->
+    <!-- ESTRELLAS -->
 
-    <div class="lily lily1">
+    <div
+        class="stars"
+        id="stars"
+    ></div>
 
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
 
-        <div class="lily-center"></div>
+    <!-- PÉTALOS QUE CAEN -->
 
-        <div class="stamen"></div>
-        <div class="stamen"></div>
-        <div class="stamen"></div>
+    <div
+        class="falling-petals"
+        id="fallingPetals"
+    ></div>
+
+
+    <!-- FLOR -->
+
+    <div class="flower">
+
+
+        <!-- TALLO -->
+
+        <div class="stem"></div>
+
+
+        <!-- HOJAS -->
+
+        <div
+            class="leaf leaf-left"
+        ></div>
+
+        <div
+            class="leaf leaf-right"
+        ></div>
+
+
+        <!-- CABEZA -->
+
+        <div class="flower-head">
+
+
+            <!-- PÉTALOS -->
+
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+
+
+            <!-- CENTRO -->
+
+            <div class="center"></div>
+
+
+        </div>
+
 
     </div>
 
 
-    <!-- LIRIO 2 -->
+    <!-- SUELO -->
 
-    <div class="lily lily2">
-
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-
-        <div class="lily-center"></div>
-
-        <div class="stamen"></div>
-        <div class="stamen"></div>
-        <div class="stamen"></div>
-
-    </div>
+    <div class="ground"></div>
 
 
-    <!-- LIRIO 3 -->
+    <!-- MENSAJE -->
 
-    <div class="lily lily3">
+    <div class="message">
 
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
+        <span class="love">
+            Te amo
+        </span>
 
-        <div class="lily-center"></div>
-
-        <div class="stamen"></div>
-        <div class="stamen"></div>
-        <div class="stamen"></div>
+        <span class="flowers">
+            Flores amarillas para ti 🌻
+        </span>
 
     </div>
 
 
-    <!-- LIRIO 4 -->
-
-    <div class="lily lily4">
-
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-
-        <div class="lily-center"></div>
-
-        <div class="stamen"></div>
-        <div class="stamen"></div>
-        <div class="stamen"></div>
-
-    </div>
-
-
-    <!-- LIRIO 5 -->
-
-    <div class="lily lily5">
-
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-
-        <div class="lily-center"></div>
-
-        <div class="stamen"></div>
-        <div class="stamen"></div>
-        <div class="stamen"></div>
-
-    </div>
-
-
-    <!-- LIRIO 6 -->
-
-    <div class="lily lily6">
-
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-        <div class="lily-petal"></div>
-
-        <div class="lily-center"></div>
-
-        <div class="stamen"></div>
-        <div class="stamen"></div>
-        <div class="stamen"></div>
-
-    </div>
-
-</div>
-
-
-<div class="message">
-
-    <span class="love">
-        Te amo
-    </span>
-
-    <span class="flowers">
-        Flores amarillas para ti 🌼
-    </span>
-
-</div>
+</main>
 
 
 <script>
 
+
 /* =========================
-        ESTRELLAS
+   ESTRELLAS
 ========================= */
 
-for(let i=0;i<45;i++){
+const stars =
+    document.getElementById("stars");
+
+
+for(let i = 0; i < 45; i++){
 
     const star =
         document.createElement("div");
@@ -838,28 +1106,33 @@ for(let i=0;i<45;i++){
         "star";
 
     star.style.left =
-        Math.random()*100+"%";
+        Math.random() * 100 + "%";
 
     star.style.top =
-        Math.random()*65+"%";
+        Math.random() * 70 + "%";
 
     star.style.animationDelay =
-        Math.random()*3+"s";
+        Math.random() * 4 + "s";
 
-    star.style.opacity =
-        Math.random();
+    star.style.animationDuration =
+        (2 + Math.random() * 3) + "s";
 
-    document.body.appendChild(
-        star
-    );
+    stars.appendChild(star);
+
 }
 
 
 /* =========================
-        PÉTALOS
+   PÉTALOS QUE CAEN
 ========================= */
 
-for(let i=0;i<20;i++){
+const petalsContainer =
+    document.getElementById(
+        "fallingPetals"
+    );
+
+
+for(let i = 0; i < 18; i++){
 
     const petal =
         document.createElement("div");
@@ -868,28 +1141,42 @@ for(let i=0;i<20;i++){
         "falling-petal";
 
     petal.style.left =
-        Math.random()*100+"%";
-
-    petal.style.top =
-        (-10-Math.random()*20)+"%";
-
-    petal.style.animationDuration =
-        (7+Math.random()*8)+"s";
-
-    petal.style.animationDelay =
-        (5+Math.random()*12)+"s";
+        Math.random() * 100 + "%";
 
     petal.style.setProperty(
+
         "--drift",
-        ((Math.random()-.5)*160)+"px"
+
+        (Math.random() * 160 - 80)
+        + "px"
+
     );
 
-    document.body.appendChild(
+    petal.style.animationDuration =
+        (7 + Math.random() * 7)
+        + "s";
+
+    petal.style.animationDelay =
+        (6 + Math.random() * 8)
+        + "s";
+
+    petal.style.width =
+        (10 + Math.random() * 9)
+        + "px";
+
+    petal.style.height =
+        (16 + Math.random() * 12)
+        + "px";
+
+    petalsContainer.appendChild(
         petal
     );
+
 }
 
 </script>
 
+
 </body>
+
 </html>
